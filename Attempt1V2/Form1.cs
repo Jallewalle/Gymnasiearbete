@@ -610,6 +610,7 @@ namespace Attempt1V2
             #endregion
 
             #region move i yled
+            #region falla
             //falla
             if (Block[playerY + 1 + jumpblock][playerX + BlockMove][0] == -1 &&
                 gravity == 14 &&
@@ -624,7 +625,8 @@ namespace Attempt1V2
                 }
                 jump = false;
             }
-
+            #endregion
+            #region hopppa
             //hoppa
             if (jump == true)
             {
@@ -649,12 +651,10 @@ namespace Attempt1V2
                     jump = false;
                 }
             }
-
+            #endregion
             //kolla landning
             if ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) &&
-                (Block[playerY + 1 + jumpblock][playerX + 1 + BlockMove][0] != -1) &&
-                (Block[playerY + 1 + jumpblock][playerX - 1 + BlockMove][0] != -1) &&
-                chockground == true)
+                 chockground == true)
             {
                 Temp = 20 - (jumpheight % 20);
                 for (int i = Temp - 1; i >= 0; i--)
