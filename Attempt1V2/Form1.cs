@@ -582,7 +582,8 @@ namespace Attempt1V2
             #region move i xled
 
             if (Höger == true &&
-                ((Block[playerY + jumpblock + jumpheight/20][playerX + 1 + BlockMove][0] == -1) || (PixelMove != 0)))
+                ((Block[playerY + jumpblock + jumpheight/20][playerX + 1 + BlockMove][0] == -1) ||
+                (PixelMove != 0)))
             {
                 PixelMove++;
                 PixelMove++;
@@ -596,7 +597,8 @@ namespace Attempt1V2
 
             if (Vänster == true &&
                 ((BlockMove > 1 || PixelMove > 1) &&
-                (Block[playerY + jumpblock + jumpheight/20][playerX -1 + BlockMove][0] == -1) ||(PixelMove != 0)))
+                (Block[playerY + jumpblock + jumpheight/20][playerX -1 + BlockMove][0] == -1)
+                ||(PixelMove != 0)))
             {
                 PixelMove--;
                 PixelMove--;
@@ -613,8 +615,7 @@ namespace Attempt1V2
             #region falla
             //falla
             if (Block[playerY + 1 + jumpblock][playerX + BlockMove][0] == -1 &&
-                gravity == 14 &&
-                jump == false)
+                gravity == 14)
             {
                 jumpheight++;
                 jumpheight++;
