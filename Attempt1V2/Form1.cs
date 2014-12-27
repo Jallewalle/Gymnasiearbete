@@ -61,14 +61,9 @@ namespace Attempt1V2
         int jumpheight = 0;
         int jumpblock = 0;
         int gravity = 14;
-        int Ymap = 0;
-        int falla;
-        int landa = 15;
+        bool falla = false;
+        bool intefalla = false;
         bool chockground = false;
-
-        bool gåhöger = false;
-        bool gåvänster = false;
-
 
         int Temp = 0;
 
@@ -582,7 +577,7 @@ namespace Attempt1V2
             #region move i xled
 
             if (Höger == true &&
-                ((Block[playerY + jumpblock + jumpheight/20][playerX + 1 + BlockMove][0] == -1) ||
+                ((Block[playerY + jumpblock][playerX + 1 + BlockMove][0] == -1) ||
                 (PixelMove != 0)))
             {
                 PixelMove++;
@@ -591,13 +586,14 @@ namespace Attempt1V2
                 {
                     BlockMove++;
                     PixelMove = 0;
+                    intefalla = false;
                 }
             }
 
 
             if (Vänster == true &&
                 ((BlockMove > 1 || PixelMove > 1) &&
-                (Block[playerY + jumpblock + jumpheight/20][playerX -1 + BlockMove][0] == -1)
+                (Block[playerY + jumpblock][playerX -1 + BlockMove][0] == -1)
                 ||(PixelMove != 0)))
             {
                 PixelMove--;
@@ -606,6 +602,7 @@ namespace Attempt1V2
                 {
                     BlockMove--;
                     PixelMove = 0;
+                    intefalla = false;
                 }
             }
 
@@ -615,7 +612,16 @@ namespace Attempt1V2
             #region falla
             //falla
             if (Block[playerY + 1 + jumpblock][playerX + BlockMove][0] == -1 &&
-                gravity == 14)
+                gravity == 14 && 
+                intefalla == false)
+            {
+                falla = true;
+            }
+            else
+            {
+                falla = false;
+            }
+            if (falla == true)
             {
                 jumpheight++;
                 jumpheight++;
@@ -654,7 +660,10 @@ namespace Attempt1V2
             }
             #endregion
             //kolla landning
-            if ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) &&
+            if (
+                ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) ||
+                (PixelMove >= 1 && Block[playerY + 1 + jumpblock][playerX + BlockMove + 1][0] != -1) ||
+                (PixelMove <= -1 && Block[playerY + 1 + jumpblock][playerX + BlockMove - 1][0] != -1)) &&
                  chockground == true)
             {
                 Temp = 20 - (jumpheight % 20);
@@ -674,11 +683,14 @@ namespace Attempt1V2
                 }
                 jump = false;
                 chockground = false;
+                intefalla = true;
                 gravity = 14;
             }
             #endregion
             Refresh();
         }
+       
+        
 
     }
 }
