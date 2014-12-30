@@ -101,7 +101,7 @@ namespace Attempt1V2
             {
                 for (int i = 0; i < Block.Count; i++)
                 {
-                    for (int u = BlockMove; u < 95 + BlockMove; u++)
+                    for (int u = BlockMove; u < 50 + BlockMove; u++)
                     {
 
                         x = 20 + u * 20 - PixelMove - BlockMove * 20 - 10;
@@ -489,7 +489,7 @@ namespace Attempt1V2
                 addvatten = false;
 
 
-                for (int Ycord = 10; Ycord < Block.Count; Ycord++)
+                for (int Ycord = random.Next(10,30); Ycord < Block.Count; Ycord++)
                 {
 
 
@@ -548,6 +548,7 @@ namespace Attempt1V2
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            timer1.Enabled = true;
             if (e.KeyCode == Keys.Right)
             {
                 Höger = true;
@@ -607,7 +608,6 @@ namespace Attempt1V2
             }
 
             #endregion
-
             #region move i yled
             #region falla
             //falla
@@ -687,6 +687,14 @@ namespace Attempt1V2
                 gravity = 14;
             }
             #endregion
+            if (falla == false &&
+                jump == false &&
+                Höger == false &&
+                Vänster == false &&
+                chockground == false)
+            {
+                timer1.Enabled = false;
+            }
             Refresh();
         }
        
