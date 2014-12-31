@@ -54,12 +54,12 @@ namespace Attempt1V2
 
         int PixelMove = 0;
         int BlockMove = 0;
+        int jumpblock = 0;
 
         bool Höger = false;
         bool Vänster = false;
         bool jump = false;
         int jumpheight = 0;
-        int jumpblock = 0;
         int gravity = 14;
         bool falla = false;
         bool intefalla = false;
@@ -73,7 +73,6 @@ namespace Attempt1V2
         int playerY = 15;
 
         Image Singel = Attempt1V2.Properties.Resources.Namnlöst_1;
-
         Image Sand = Attempt1V2.Properties.Resources.Sandv2;
         Image Toppvatten = Attempt1V2.Properties.Resources.toppvatten;
         Image Botvatten = Attempt1V2.Properties.Resources.bottvatten;
@@ -99,7 +98,7 @@ namespace Attempt1V2
             }
             if (DrawMap == true)
             {
-                for (int i = 0; i < Block.Count; i++)
+                for (int i = 0; i < 30 + jumpblock; i++)
                 {
                     for (int u = BlockMove; u < 50 + BlockMove; u++)
                     {
@@ -141,8 +140,6 @@ namespace Attempt1V2
             }
             g.FillRectangle(Brushes.Cyan, 10 + playerX*20, 250, 20, 20);
         }
-
-
         public void Cinematic()
         {
             DrawMap = true;
@@ -155,7 +152,7 @@ namespace Attempt1V2
                 längd = random.Next(10, 20);
                 if (i % 3 == 0)
                 {
-                    typ = random.Next(0, 4);
+                    //typ = random.Next(0, 4);
                     if (typ == 0)
                     {
                         underblock = 2;
