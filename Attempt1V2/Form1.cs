@@ -64,6 +64,7 @@ namespace Attempt1V2
         bool falla = false;
         bool intefalla = false;
         bool chockground = false;
+        bool move = false;
 
         int Temp = 0;
 
@@ -87,6 +88,8 @@ namespace Attempt1V2
         Image Gräs = Attempt1V2.Properties.Resources.Gräsjord;
         Image Jord = Attempt1V2.Properties.Resources.Jordv3;
         Image Sten = Attempt1V2.Properties.Resources.sten;
+        Image Player = Attempt1V2.Properties.Resources.gub1;
+        Image JumpingPlayer = Attempt1V2.Properties.Resources.gub2;
         #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -113,8 +116,6 @@ namespace Attempt1V2
 
                         x = xoffset + u * 20 - PixelMove - BlockMove * 20;
                         y = yoffset + i * 20 - jumpheight - jumpblock * 20;
-
-
 
                         if (Block[i][u][0] != -1)
                         {
@@ -146,7 +147,15 @@ namespace Attempt1V2
                     }
                 }
             }
-            g.FillRectangle(Brushes.Cyan, xoffset + playerX*20, 250, 20, 20);
+            if (jump ==false && falla == false)
+            {
+                g.DrawImage(Player, xoffset + playerX * 20, 250, 40, 60);
+            }
+            else
+            {
+                g.DrawImage(JumpingPlayer, xoffset + playerX * 20, 250, 40, 60);
+            }
+            
             g.FillRectangle(Brushes.Red, mouseX, mouseY, 10, 10);
         }
         public void Cinematic()
@@ -495,7 +504,7 @@ namespace Attempt1V2
                 addvatten = false;
 
 
-                for (int Ycord = random.Next(10,30); Ycord < Block.Count; Ycord++)
+                for (int Ycord = random.Next(10, 30); Ycord < Block.Count; Ycord++)
                 {
 
 
@@ -554,7 +563,7 @@ namespace Attempt1V2
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            timer1.Enabled = true;
+            move = true;
             if (e.KeyCode == Keys.Right)
             {
                 Höger = true;
@@ -582,34 +591,41 @@ namespace Attempt1V2
         private void timer1_Tick(object sender, EventArgs e)
         {
             #region move i xled
-
-            if (Höger == true &&
-                ((Block[playerY + jumpblock][playerX + 1 + BlockMove][0] == -1) ||
-                (PixelMove != 0)))
+            if (move)
             {
-                PixelMove++;
-                PixelMove++;
-                if (PixelMove >= 20)
+                if (Höger == true &&
+                    (
+                    (Block[playerY + jumpblock + 0][playerX + 2 + BlockMove][0] == -1) &&
+                    (Block[playerY + jumpblock + 1][playerX + 2 + BlockMove][0] == -1) &&
+                    (Block[playerY + jumpblock + 2][playerX + 2 + BlockMove][0] == -1) ||
+                    (PixelMove != 0)))
                 {
-                    BlockMove++;
-                    PixelMove = 0;
-                    intefalla = false;
+                    PixelMove++;
+                    PixelMove++;
+                    if (PixelMove >= 20)
+                    {
+                        BlockMove++;
+                        PixelMove = 0;
+                        intefalla = false;
+                    }
                 }
-            }
 
 
-            if (Vänster == true &&
-                ((BlockMove > 1 || PixelMove > 1) &&
-                (Block[playerY + jumpblock][playerX -1 + BlockMove][0] == -1)
-                ||(PixelMove != 0)))
-            {
-                PixelMove--;
-                PixelMove--;
-                if (PixelMove <= -20)
+                if (Vänster == true &&
+                    ((BlockMove > 1 || PixelMove > 1) &&
+                    (Block[playerY + jumpblock + 0][playerX - 1 + BlockMove][0] == -1) &&
+                    (Block[playerY + jumpblock + 1][playerX - 1 + BlockMove][0] == -1) &&
+                    (Block[playerY + jumpblock + 2][playerX - 1 + BlockMove][0] == -1) ||
+                    (PixelMove != 0)))
                 {
-                    BlockMove--;
-                    PixelMove = 0;
-                    intefalla = false;
+                    PixelMove--;
+                    PixelMove--;
+                    if (PixelMove <= -20)
+                    {
+                        BlockMove--;
+                        PixelMove = 0;
+                        intefalla = false;
+                    }
                 }
             }
 
@@ -617,8 +633,10 @@ namespace Attempt1V2
             #region move i yled
             #region falla
             //falla
-            if (Block[playerY + 1 + jumpblock][playerX + BlockMove][0] == -1 &&
-                gravity == 14 && 
+            if (
+                (Block[playerY + 3 + jumpblock][playerX + BlockMove + 0][0] == -1) &&
+                (Block[playerY + 3 + jumpblock][playerX + BlockMove + 1][0] == -1) &&
+                gravity == 14 &&
                 intefalla == false)
             {
                 falla = true;
@@ -665,11 +683,12 @@ namespace Attempt1V2
                 }
             }
             #endregion
+            #region landning
             //kolla landning
             if (
                 ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) ||
-                (PixelMove >= 1 && Block[playerY + 1 + jumpblock][playerX + BlockMove + 1][0] != -1) ||
-                (PixelMove <= -1 && Block[playerY + 1 + jumpblock][playerX + BlockMove - 1][0] != -1)) &&
+                (PixelMove >= 1 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 1][0] != -1) ||
+                (PixelMove <= -1 && Block[playerY + 3 + jumpblock][playerX + BlockMove - 1][0] != -1)) &&
                  chockground == true)
             {
                 Temp = 20 - (jumpheight % 20);
@@ -693,34 +712,23 @@ namespace Attempt1V2
                 gravity = 14;
             }
             #endregion
-            if (falla == false &&
-                jump == false &&
-                Höger == false &&
-                Vänster == false &&
-                chockground == false)
-            {
-                timer1.Enabled = false;
-            }
+            #endregion
             Refresh();
         }
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
+            Cursor.Hide();
             mouseX = e.X;
             mouseY = e.Y;
-            Refresh();
         }
-
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            mouseXremove = (mouseX + xoffset) / 20 + BlockMove;
-            mouseYremove = (mouseY + yoffset) / 20 + jumpblock;
+            mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
+            mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
             Block[mouseYremove][mouseXremove].RemoveAt(0);
             Block[mouseYremove][mouseXremove].Add(-1);
         }
-
-        
-
     }
 }
 

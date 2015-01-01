@@ -44,10 +44,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(984, 524);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "Form1";
+            this.Text = "SuperSpel";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
