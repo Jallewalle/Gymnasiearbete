@@ -72,6 +72,14 @@ namespace Attempt1V2
         int playerX = 15;
         int playerY = 15;
 
+        int mouseX = 0;
+        int mouseY = 0;
+        int mouseXremove = 0;
+        int mouseYremove = 0;
+
+        int xoffset = -5;
+        int yoffset = -50;
+
         Image Singel = Attempt1V2.Properties.Resources.Namnlöst_1;
         Image Sand = Attempt1V2.Properties.Resources.Sandv2;
         Image Toppvatten = Attempt1V2.Properties.Resources.toppvatten;
@@ -100,11 +108,11 @@ namespace Attempt1V2
             {
                 for (int i = 0; i < 30 + jumpblock; i++)
                 {
-                    for (int u = BlockMove; u < 50 + BlockMove; u++)
+                    for (int u = BlockMove; u < 52 + BlockMove; u++)
                     {
 
-                        x = 20 + u * 20 - PixelMove - BlockMove * 20 - 10;
-                        y = i * 20 - 50 - jumpheight - jumpblock * 20;
+                        x = xoffset + u * 20 - PixelMove - BlockMove * 20;
+                        y = yoffset + i * 20 - jumpheight - jumpblock * 20;
 
 
 
@@ -138,7 +146,8 @@ namespace Attempt1V2
                     }
                 }
             }
-            g.FillRectangle(Brushes.Cyan, 10 + playerX*20, 250, 20, 20);
+            g.FillRectangle(Brushes.Cyan, xoffset + playerX*20, 250, 20, 20);
+            g.FillRectangle(Brushes.Red, mouseX, mouseY, 10, 10);
         }
         public void Cinematic()
         {
@@ -694,7 +703,22 @@ namespace Attempt1V2
             }
             Refresh();
         }
-       
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            mouseX = e.X;
+            mouseY = e.Y;
+            Refresh();
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            mouseXremove = (mouseX + xoffset) / 20 + BlockMove;
+            mouseYremove = (mouseY + yoffset) / 20 + jumpblock;
+            Block[mouseYremove][mouseXremove].RemoveAt(0);
+            Block[mouseYremove][mouseXremove].Add(-1);
+        }
+
         
 
     }
