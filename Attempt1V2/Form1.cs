@@ -657,6 +657,44 @@ namespace Attempt1V2
                 jump = false;
             }
             #endregion
+            #region landning
+            //kolla landning
+            if (
+                ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) ||
+                (PixelMove >= 1 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 2][0] != -1) ||
+                (PixelMove <= -1 && Block[playerY + 3 + jumpblock][playerX + BlockMove - 1][0] != -1)) &&
+                 chockground == true)
+            {
+                Temp = 20 - (jumpheight % 20);
+                for (int i = Temp - 1; i >= 0; i--)
+                {
+                    jumpheight = i;
+                }
+                if (jumpheight >= 20)
+                {
+                    jumpblock++;
+                    jumpheight = 0;
+                }
+                if (jumpheight <= -20)
+                {
+                    jumpblock--;
+                    jumpheight = 0;
+                }
+                jump = false;
+                chockground = false;
+                intefalla = true;
+                gravity = 14;
+            }
+            if ((
+                (Block[playerY + jumpblock - 1][playerX + BlockMove + 0][0] != -1) ||
+                (Block[playerY + jumpblock - 1][playerX + BlockMove + 1][0] != -1)) &&
+                jump == true)
+            {
+                gravity = 14;
+                jump = false;
+                falla = true;
+            }
+            #endregion
             #region hopppa
             //hoppa
             if (jump == true)
@@ -682,36 +720,7 @@ namespace Attempt1V2
                     jump = false;
                 }
             }
-            #endregion
-            #region landning
-            //kolla landning
-            if (
-                ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) ||
-                (PixelMove >= 1 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 1][0] != -1) ||
-                (PixelMove <= -1 && Block[playerY + 3 + jumpblock][playerX + BlockMove - 1][0] != -1)) &&
-                 chockground == true)
-            {
-                Temp = 20 - (jumpheight % 20);
-                for (int i = Temp - 1; i >= 0; i--)
-                {
-                    jumpheight = i;
-                }
-                if (jumpheight >= 20)
-                {
-                    jumpblock++;
-                    jumpheight = 0;
-                }
-                if (jumpheight <= -20)
-                {
-                    jumpblock--;
-                    jumpheight = 0;
-                }
-                jump = false;
-                chockground = false;
-                intefalla = true;
-                gravity = 14;
-            }
-            #endregion
+            #endregion 
             #endregion
             Refresh();
         }
