@@ -156,7 +156,7 @@ namespace Attempt1V2
                 g.DrawImage(JumpingPlayer, xoffset + playerX * 20, 250, 40, 60);
             }
             
-            g.FillRectangle(Brushes.Red, mouseX, mouseY, 10, 10);
+            g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
         public void Cinematic()
         {
@@ -660,9 +660,18 @@ namespace Attempt1V2
             #region landning
             //kolla landning
             if (
-                ((Block[playerY + 1 + jumpblock][playerX + BlockMove][0] != -1) ||
-                (PixelMove >= 1 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 2][0] != -1) ||
-                (PixelMove <= -1 && Block[playerY + 3 + jumpblock][playerX + BlockMove - 1][0] != -1)) &&
+                (
+                (Block[playerY + 1 + jumpblock][playerX + BlockMove + 0][0] != -1) ||
+                (Block[playerY + 1 + jumpblock][playerX + BlockMove + 1][0] != -1) 
+                ) ||
+                (
+                (PixelMove >= +1 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 2][0] != -1) ||
+                (PixelMove <= -1 && Block[playerY + 3 + jumpblock][playerX + BlockMove - 1][0] != -1) ||
+                (
+                (PixelMove == +0 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 0][0] != -1) ||
+                (PixelMove == +0 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 1][0] != -1)
+                )
+                ) &&
                  chockground == true)
             {
                 Temp = 20 - (jumpheight % 20);
