@@ -50,6 +50,12 @@ namespace Attempt1V2
         const int DIRT = 2;
         const int STONE = 3;
         const int WATER = 4;
+
+        int BreakGrass = 500;
+        int BreakStone = 1000;
+
+        int Breaking = 0;
+
         int underblock = 0;
 
         int PixelMove = 0;
@@ -744,8 +750,43 @@ namespace Attempt1V2
         {
             mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
             mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
-            Block[mouseYremove][mouseXremove].RemoveAt(0);
-            Block[mouseYremove][mouseXremove].Add(-1);
+
+            if (Block[mouseYremove][mouseXremove][0] == GRASS ||
+                Block[mouseYremove][mouseXremove][0] == SAND ||
+                Block[mouseYremove][mouseXremove][0] == DIRT)
+            {
+                BreakingGrassJordSand();
+            }
+            else if (Block[mouseYremove][mouseXremove][0] == STONE)
+            {
+                BreakingStone();
+            }
+        }
+        public void BreakingGrassJordSand()
+        {
+            for (int i = 0; i < BreakGrass; i++)
+            {
+                if (i == BreakGrass - 1)
+                {
+                    Block[mouseYremove][mouseXremove].RemoveAt(0);
+                    Block[mouseYremove][mouseXremove].Add(-1);
+                }
+            }
+        }
+        private void BreakingStone()
+        {
+            for (Breaking = 0; Breaking < 10; Breaking++)
+            {
+                if (Breaking == BreakStone - 1)
+                {
+                    Block[mouseYremove][mouseXremove].RemoveAt(0);
+                    Block[mouseYremove][mouseXremove].Add(-1);
+                }
+            }
+        }
+        private void BreakBlocks_Tick(object sender, EventArgs e)
+        {
+          
         }
     }
 }
