@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Attempt1V2
 {
@@ -51,8 +52,8 @@ namespace Attempt1V2
         const int STONE = 3;
         const int WATER = 4;
 
-        int BreakGrass = 500;
-        int BreakStone = 1000;
+        int BreakGrass = 100;
+        int BreakStone = 200;
 
         int Breaking = 0;
 
@@ -153,7 +154,7 @@ namespace Attempt1V2
                     }
                 }
             }
-            if (jump ==false && falla == false)
+            if (jump == false && falla == false)
             {
                 g.DrawImage(Player, xoffset + playerX * 20, 250, 40, 60);
             }
@@ -161,7 +162,7 @@ namespace Attempt1V2
             {
                 g.DrawImage(JumpingPlayer, xoffset + playerX * 20, 250, 40, 60);
             }
-            
+
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
         public void Cinematic()
@@ -668,7 +669,7 @@ namespace Attempt1V2
             if (
                 (
                 (Block[playerY + 1 + jumpblock][playerX + BlockMove + 0][0] != -1) ||
-                (Block[playerY + 1 + jumpblock][playerX + BlockMove + 1][0] != -1) 
+                (Block[playerY + 1 + jumpblock][playerX + BlockMove + 1][0] != -1)
                 ) ||
                 (
                 (PixelMove >= +1 && Block[playerY + 3 + jumpblock][playerX + BlockMove + 2][0] != -1) ||
@@ -735,7 +736,7 @@ namespace Attempt1V2
                     jump = false;
                 }
             }
-            #endregion 
+            #endregion
             #endregion
             Refresh();
         }
@@ -748,6 +749,7 @@ namespace Attempt1V2
         }
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
+            Breaking = 0;
             mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
             mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
 
@@ -755,7 +757,7 @@ namespace Attempt1V2
                 Block[mouseYremove][mouseXremove][0] == SAND ||
                 Block[mouseYremove][mouseXremove][0] == DIRT)
             {
-                BreakingGrassJordSand();
+                BreakBlocks.Enabled = true;
             }
             else if (Block[mouseYremove][mouseXremove][0] == STONE)
             {
@@ -764,29 +766,44 @@ namespace Attempt1V2
         }
         public void BreakingGrassJordSand()
         {
+            //Thread.Sleep(BreakGrass);
             for (int i = 0; i < BreakGrass; i++)
             {
-                if (i == BreakGrass - 1)
-                {
-                    Block[mouseYremove][mouseXremove].RemoveAt(0);
-                    Block[mouseYremove][mouseXremove].Add(-1);
-                }
+                Breaking = i;
             }
+            if (Breaking == BreakGrass -1)
+            {
+                Block[mouseYremove][mouseXremove].RemoveAt(0);
+                Block[mouseYremove][mouseXremove].Add(-1);
+            }
+
         }
         private void BreakingStone()
         {
-            for (Breaking = 0; Breaking < 10; Breaking++)
-            {
-                if (Breaking == BreakStone - 1)
-                {
-                    Block[mouseYremove][mouseXremove].RemoveAt(0);
-                    Block[mouseYremove][mouseXremove].Add(-1);
-                }
-            }
+            //for (Breaking = 0; Breaking < 10; Breaking++)
+            //{
+            //    if (Breaking == BreakStone - 1)
+            //    {
+            //        Block[mouseYremove][mouseXremove].RemoveAt(0);
+            //        Block[mouseYremove][mouseXremove].Add(-1);
+            //    }
+            //}
         }
         private void BreakBlocks_Tick(object sender, EventArgs e)
         {
-          
+            Breaking++;
+            if (Breaking >= BreakGrass)
+            {
+                Block[mouseYremove][mouseXremove].RemoveAt(0);
+                Block[mouseYremove][mouseXremove].Add(-1);
+                Breaking = 0;
+                BreakBlocks.Enabled = false;
+            }
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
