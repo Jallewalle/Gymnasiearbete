@@ -95,8 +95,15 @@ namespace Attempt1V2
         Image Gräs = Attempt1V2.Properties.Resources.Gräsjord;
         Image Jord = Attempt1V2.Properties.Resources.Jordv3;
         Image Sten = Attempt1V2.Properties.Resources.sten;
+
         Image Player = Attempt1V2.Properties.Resources.gub1;
         Image JumpingPlayer = Attempt1V2.Properties.Resources.gub2;
+
+        Image RunningPlayer1 = Attempt1V2.Properties.Resources.gub21;
+        Image RunningPlayer2 = Attempt1V2.Properties.Resources.gub22;
+        Image RunningPlayer3 = Attempt1V2.Properties.Resources.gub24;
+        Image RunningPlayer4 = Attempt1V2.Properties.Resources.gub25;
+        int imagepic = 0;
         #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -154,14 +161,15 @@ namespace Attempt1V2
                     }
                 }
             }
-            if (jump == false && falla == false)
-            {
-                g.DrawImage(Player, xoffset + playerX * 20, 250, 40, 60);
-            }
-            else
-            {
-                g.DrawImage(JumpingPlayer, xoffset + playerX * 20, 250, 40, 60);
-            }
+            //if (jump == false && falla == false)
+            //{
+            //    g.DrawImage(Player, xoffset + playerX * 20, 250, 40, 60);
+            //}
+            //else
+            //{
+            //    g.DrawImage(JumpingPlayer, xoffset + playerX * 20, 250, 40, 60);
+            //}
+
 
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
@@ -753,9 +761,18 @@ namespace Attempt1V2
         }
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            BreakBlocks.Enabled = true;
             mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
             mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
+
+            if (
+                (mouseXremove - (playerX + BlockMove) <= +5) &&
+                (mouseXremove - (playerX + BlockMove) >= -5) &&
+                (mouseYremove - (playerY + jumpblock) <= +5) &&
+                (mouseYremove - (playerY + jumpblock) >= -5)
+                )
+            {
+                BreakBlocks.Enabled = true;
+            }
         }
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -765,9 +782,7 @@ namespace Attempt1V2
         private void BreakBlocks_Tick(object sender, EventArgs e)
         {
             Breaking++;
-            if (mouseXremove - (playerX - BlockMove) <= 5 &&
-                mouseXremove - (playerX - BlockMove) >= -5)
-            {
+            
                 if (
                 (
                 (Block[mouseYremove][mouseXremove][0] == GRASS ||
@@ -780,7 +795,6 @@ namespace Attempt1V2
                     Block[mouseYremove][mouseXremove].RemoveAt(0);
                     Block[mouseYremove][mouseXremove].Add(-1);
                 }
-            }
         }
     }
 }
