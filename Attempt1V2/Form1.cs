@@ -749,61 +749,38 @@ namespace Attempt1V2
         }
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            Breaking = 0;
+
+        }
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            BreakBlocks.Enabled = true;
             mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
             mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
-
-            if (Block[mouseYremove][mouseXremove][0] == GRASS ||
-                Block[mouseYremove][mouseXremove][0] == SAND ||
-                Block[mouseYremove][mouseXremove][0] == DIRT)
-            {
-                BreakBlocks.Enabled = true;
-            }
-            else if (Block[mouseYremove][mouseXremove][0] == STONE)
-            {
-                BreakingStone();
-            }
         }
-        public void BreakingGrassJordSand()
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            //Thread.Sleep(BreakGrass);
-            for (int i = 0; i < BreakGrass; i++)
-            {
-                Breaking = i;
-            }
-            if (Breaking == BreakGrass -1)
-            {
-                Block[mouseYremove][mouseXremove].RemoveAt(0);
-                Block[mouseYremove][mouseXremove].Add(-1);
-            }
-
-        }
-        private void BreakingStone()
-        {
-            //for (Breaking = 0; Breaking < 10; Breaking++)
-            //{
-            //    if (Breaking == BreakStone - 1)
-            //    {
-            //        Block[mouseYremove][mouseXremove].RemoveAt(0);
-            //        Block[mouseYremove][mouseXremove].Add(-1);
-            //    }
-            //}
+            Breaking = 0;
+            BreakBlocks.Enabled = false;
         }
         private void BreakBlocks_Tick(object sender, EventArgs e)
         {
             Breaking++;
-            if (Breaking >= BreakGrass)
+            if (mouseXremove - (playerX - BlockMove) <= 5 &&
+                mouseXremove - (playerX - BlockMove) >= -5)
             {
-                Block[mouseYremove][mouseXremove].RemoveAt(0);
-                Block[mouseYremove][mouseXremove].Add(-1);
-                Breaking = 0;
-                BreakBlocks.Enabled = false;
+                if (
+                (
+                (Block[mouseYremove][mouseXremove][0] == GRASS ||
+                Block[mouseYremove][mouseXremove][0] == SAND ||
+                Block[mouseYremove][mouseXremove][0] == DIRT) &&
+                Breaking == BreakGrass) ||
+                Block[mouseYremove][mouseXremove][0] == STONE &&
+                Breaking == BreakStone)
+                {
+                    Block[mouseYremove][mouseXremove].RemoveAt(0);
+                    Block[mouseYremove][mouseXremove].Add(-1);
+                }
             }
-        }
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }
