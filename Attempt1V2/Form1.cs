@@ -102,10 +102,15 @@ namespace Attempt1V2
         Image Player = Attempt1V2.Properties.Resources.gub1;
         Image JumpingPlayer = Attempt1V2.Properties.Resources.gub2;
 
-        Image RunningPlayer1 = Attempt1V2.Properties.Resources.gub21;
-        Image RunningPlayer2 = Attempt1V2.Properties.Resources.gub22;
-        Image RunningPlayer3 = Attempt1V2.Properties.Resources.gub24;
-        Image RunningPlayer4 = Attempt1V2.Properties.Resources.gub25;
+        Image PlayerStill = Attempt1V2.Properties.Resources.gub21;
+
+        Image PlayerRunning1 = Attempt1V2.Properties.Resources.gub22;
+        Image PlayerRunning2 = Attempt1V2.Properties.Resources.gub24;
+        Image PlayerRunning3 = Attempt1V2.Properties.Resources.gub25;
+
+        Image PlayerRunning4 = Attempt1V2.Properties.Resources.gub221;
+        Image PlayerRunning5 = Attempt1V2.Properties.Resources.gub21;
+        Image PlayerRunning6 = Attempt1V2.Properties.Resources.gub251;
         int imagepic = 0;
         #endregion
         private void Form1_Load(object sender, EventArgs e)
@@ -164,14 +169,43 @@ namespace Attempt1V2
                     }
                 }
             }
-            //if (jump == false && falla == false)
-            //{
-            //    g.DrawImage(Player, xoffset + playerX * 20, 250, 40, 60);
-            //}
-            //else
-            //{
-            //    g.DrawImage(JumpingPlayer, xoffset + playerX * 20, 250, 40, 60);
-            //}
+            if (imagepic == 0 || jump == true || falla == true || (Höger == false && Vänster == false))
+            {
+                g.DrawImage(PlayerStill, xoffset + playerX * 20, 250, 40, 60);
+            }
+            else if (imagepic == 1)
+            {
+                if (Vänster)
+                {
+                    g.DrawImage(PlayerRunning1, xoffset + playerX * 20, 250, 40, 60);
+                }
+                else
+                {
+                    g.DrawImage(PlayerRunning4, xoffset + playerX * 20, 250, 40, 60);
+                }
+            }
+            else if (imagepic == 2)
+            {
+                if (Vänster)
+                {
+                    g.DrawImage(PlayerRunning2, xoffset + playerX * 20, 250, 40, 60);
+                }
+                else
+                {
+                    g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
+                }
+            }
+            else if (imagepic == 3)
+            {
+                if (Vänster)
+                {
+                    g.DrawImage(PlayerRunning3, xoffset + playerX * 20, 250, 40, 60);
+                }
+                else
+                {
+                    g.DrawImage(PlayerRunning6, xoffset + playerX * 20, 250, 40, 60);
+                }
+            }
 
 
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
@@ -188,7 +222,7 @@ namespace Attempt1V2
                 längd = random.Next(10, 20);
                 if (i % 3 == 0)
                 {
-                    //typ = random.Next(0, 4);
+                    typ = random.Next(0, 4);
                     if (typ == 0)
                     {
                         underblock = 2;
@@ -620,6 +654,15 @@ namespace Attempt1V2
                 {
                     PixelMove++;
                     PixelMove++;
+
+                    if (PixelMove % 5 == 0)
+                    {
+                        imagepic++;
+                        if (imagepic == 4)
+                        {
+                            imagepic = 1;
+                        }
+                    }
                     if (PixelMove >= 20)
                     {
                         BlockMove++;
@@ -627,8 +670,6 @@ namespace Attempt1V2
                         intefalla = false;
                     }
                 }
-
-
                 if (Vänster == true &&
                     ((BlockMove > 1 || PixelMove > 1) &&
                     (Block[playerY + jumpblock + 0][playerX - 1 + BlockMove][0] == -1) &&
@@ -638,6 +679,14 @@ namespace Attempt1V2
                 {
                     PixelMove--;
                     PixelMove--;
+                    if (PixelMove % 5 == 0)
+                    {
+                        imagepic++;
+                        if (imagepic == 4)
+                        {
+                            imagepic = 1;
+                        }
+                    }
                     if (PixelMove <= -20)
                     {
                         BlockMove--;
@@ -781,7 +830,7 @@ namespace Attempt1V2
         {
             Breaking = 0;
             BreakBlocks.Enabled = false;
-            if (xp >= lvl/1.375* 1000)
+            if (xp >= lvl / 1.375 * 1000 && lvl != 99)
             {
                 lvl++;
                 BreakGrass -= 1;
@@ -806,8 +855,6 @@ namespace Attempt1V2
             {
                 Block[mouseYremove][mouseXremove].RemoveAt(0);
                 Block[mouseYremove][mouseXremove].Add(-1);
-                mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
-                mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
             }
         }
     }

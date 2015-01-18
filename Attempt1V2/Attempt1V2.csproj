@@ -158,8 +158,10 @@
   <ItemGroup>
     <Content Include="Resources\gub21.png" />
     <Content Include="Resources\gub22.png" />
+    <None Include="Resources\gub221.png" />
     <Content Include="Resources\gub24.png" />
     <Content Include="Resources\gub25.png" />
+    <None Include="Resources\gub251.png" />
     <Content Include="Resources\output_91k5ws.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
