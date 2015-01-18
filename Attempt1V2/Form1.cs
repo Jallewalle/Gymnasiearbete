@@ -52,11 +52,6 @@ namespace Attempt1V2
         const int STONE = 3;
         const int WATER = 4;
 
-        int BreakGrass = 100;
-        int BreakStone = 200;
-
-        int Breaking = 0;
-
         int underblock = 0;
 
         int PixelMove = 0;
@@ -84,6 +79,14 @@ namespace Attempt1V2
         int mouseY = 0;
         int mouseXremove = 0;
         int mouseYremove = 0;
+
+        int lvl = 1;
+        int xp = 0;
+
+        int BreakGrass = 100;
+        int BreakStone = 200;
+
+        int Breaking = 0;
 
         int xoffset = -5;
         int yoffset = -50;
@@ -778,23 +781,34 @@ namespace Attempt1V2
         {
             Breaking = 0;
             BreakBlocks.Enabled = false;
+            if (xp >= lvl/1.375* 1000)
+            {
+                lvl++;
+                BreakGrass -= 1;
+                BreakStone -= 2;
+                xp = 0;
+                MessageBox.Show("lvl up!" + " Now lvl" + lvl);
+            }
         }
         private void BreakBlocks_Tick(object sender, EventArgs e)
         {
             Breaking++;
-            
-                if (
-                (
-                (Block[mouseYremove][mouseXremove][0] == GRASS ||
-                Block[mouseYremove][mouseXremove][0] == SAND ||
-                Block[mouseYremove][mouseXremove][0] == DIRT) &&
-                Breaking == BreakGrass) ||
-                Block[mouseYremove][mouseXremove][0] == STONE &&
-                Breaking == BreakStone)
-                {
-                    Block[mouseYremove][mouseXremove].RemoveAt(0);
-                    Block[mouseYremove][mouseXremove].Add(-1);
-                }
+            xp++;
+
+            if (
+            (
+            (Block[mouseYremove][mouseXremove][0] == GRASS ||
+            Block[mouseYremove][mouseXremove][0] == SAND ||
+            Block[mouseYremove][mouseXremove][0] == DIRT) &&
+            Breaking == BreakGrass) ||
+            Block[mouseYremove][mouseXremove][0] == STONE &&
+            Breaking == BreakStone)
+            {
+                Block[mouseYremove][mouseXremove].RemoveAt(0);
+                Block[mouseYremove][mouseXremove].Add(-1);
+                mouseXremove = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
+                mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
+            }
         }
     }
 }
