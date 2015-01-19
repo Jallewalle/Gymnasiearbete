@@ -830,7 +830,8 @@ namespace Attempt1V2
         {
             Breaking = 0;
             BreakBlocks.Enabled = false;
-            if (xp >= lvl / 1.375 * 1000 && lvl != 99)
+            //lvl / 1.375 * 1000
+            if (xp >= 1 && lvl != 99)
             {
                 lvl++;
                 BreakGrass -= 1;
