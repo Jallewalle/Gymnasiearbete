@@ -99,8 +99,8 @@ namespace Attempt1V2
         Image Jord = Attempt1V2.Properties.Resources.Jordv3;
         Image Sten = Attempt1V2.Properties.Resources.sten;
 
-        Image Player = Attempt1V2.Properties.Resources.gub1;
-        Image JumpingPlayer = Attempt1V2.Properties.Resources.gub2;
+        //Image Player = Attempt1V2.Properties.Resources.gub1;
+        //Image JumpingPlayer = Attempt1V2.Properties.Resources.gub2;
 
         Image PlayerStill = Attempt1V2.Properties.Resources.gub21;
 
@@ -111,6 +111,9 @@ namespace Attempt1V2
         Image PlayerRunning4 = Attempt1V2.Properties.Resources.gub221;
         Image PlayerRunning5 = Attempt1V2.Properties.Resources.gub21;
         Image PlayerRunning6 = Attempt1V2.Properties.Resources.gub251;
+
+        Image PlayerJumping1 = Attempt1V2.Properties.Resources.gub32; //Vänster
+        Image PlayerJumping2 = Attempt1V2.Properties.Resources.gub31; //Höger
         int imagepic = 0;
         #endregion
         private void Form1_Load(object sender, EventArgs e)
@@ -169,9 +172,12 @@ namespace Attempt1V2
                     }
                 }
             }
-            if (imagepic == 0 || jump == true || falla == true || (Höger == false && Vänster == false))
+            if (jump == true || falla == true)
             {
-                g.DrawImage(PlayerStill, xoffset + playerX * 20, 250, 40, 60);
+                if (Vänster == true)
+                    g.DrawImage(PlayerJumping1, xoffset + playerX * 20, 250, 40, 60);
+                if (Höger == true)
+                    g.DrawImage(PlayerJumping2, xoffset + playerX * 20, 250, 40, 60);
             }
             else if (imagepic == 1)
             {
@@ -206,6 +212,18 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning6, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
+            else if (imagepic == 4)
+            {
+                if (Vänster)
+                {
+                    g.DrawImage(PlayerRunning2, xoffset + playerX * 20, 250, 40, 60);
+                }
+                else
+                {
+                    g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
+                }
+            }
+            
 
 
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
@@ -654,11 +672,14 @@ namespace Attempt1V2
                 {
                     PixelMove++;
                     PixelMove++;
-
+                    if (PixelMove == 0)
+                    {
+                        imagepic = 4;
+                    }
                     if (PixelMove % 5 == 0)
                     {
                         imagepic++;
-                        if (imagepic == 4)
+                        if (imagepic == 5)
                         {
                             imagepic = 1;
                         }
@@ -679,10 +700,15 @@ namespace Attempt1V2
                 {
                     PixelMove--;
                     PixelMove--;
+                    if (PixelMove == 0)
+                    {
+                        imagepic = 2;
+                    }
                     if (PixelMove % 5 == 0)
                     {
                         imagepic++;
-                        if (imagepic == 4)
+                        
+                        if (imagepic == 5)
                         {
                             imagepic = 1;
                         }
