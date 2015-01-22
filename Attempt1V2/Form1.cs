@@ -60,6 +60,8 @@ namespace Attempt1V2
 
         bool Höger = false;
         bool Vänster = false;
+        int Lastmove = 0;
+
         bool jump = false;
         int jumpheight = 0;
         int gravity = 14;
@@ -174,10 +176,21 @@ namespace Attempt1V2
             }
             if (jump == true || falla == true)
             {
-                if (Vänster == true)
+                if (Vänster == true || (Höger == false && Vänster == false && Lastmove == 2))
                     g.DrawImage(PlayerJumping1, xoffset + playerX * 20, 250, 40, 60);
-                if (Höger == true)
+                if (Höger == true || (Höger == false && Vänster == false && Lastmove == 1))
                     g.DrawImage(PlayerJumping2, xoffset + playerX * 20, 250, 40, 60);
+            }
+            if (Höger == false && Vänster == false && falla == false && jump == false)
+            {
+                if ( Lastmove == 2)
+                {
+                    g.DrawImage(PlayerRunning2, xoffset + playerX * 20, 250, 40, 60);
+                }
+                else
+                {
+                    g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
+                }
             }
             else if (imagepic == 1)
             {
@@ -652,10 +665,12 @@ namespace Attempt1V2
             if (e.KeyCode == Keys.Right)
             {
                 Höger = false;
+                Lastmove = 1;
             }
             if (e.KeyCode == Keys.Left)
             {
                 Vänster = false;
+                Lastmove = 2;
             }
         }
         private void timer1_Tick(object sender, EventArgs e)
