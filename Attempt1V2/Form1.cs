@@ -13,7 +13,8 @@ namespace Attempt1V2
 {
        //inventory
        //AI
-       //mineraler
+       //mineraler  (iron, silver, gold, )
+       //träd
        //crafting
        //spara det
        //items/droprate
@@ -260,8 +261,10 @@ namespace Attempt1V2
 
             Font drawFont = new Font("Arial", 16);
             PointF drawPoint = new PointF(150.0F, 150.0F);
+            PointF drawPoint2 = new PointF(150.0F, 165.0F);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             g.DrawString(BlockMove.ToString(), drawFont, drawBrush, drawPoint);
+            g.DrawString((jumpblock + 15).ToString(), drawFont, drawBrush, drawPoint2);
 
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
@@ -671,15 +674,15 @@ namespace Attempt1V2
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             move = true;
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 Höger = true;
             }
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 Vänster = true;
             }
-            if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space)
             {
                 jump = true;
             }
@@ -697,12 +700,12 @@ namespace Attempt1V2
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 Höger = false;
                 Lastmove = 1;
             }
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 Vänster = false;
                 Lastmove = 2;
