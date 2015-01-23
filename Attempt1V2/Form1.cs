@@ -45,6 +45,7 @@ namespace Attempt1V2
         bool addvatten = false;
         bool meny = false;
         bool DrawMap = false;
+        bool InventoryOpen = false;
 
         const int GRASS = 0;
         const int SAND = 1;
@@ -129,10 +130,19 @@ namespace Attempt1V2
         }
         protected override void OnPaint(PaintEventArgs e)
         {
+            
             Graphics g = e.Graphics;
             if (meny == true)
             {
                 g.DrawImage(Singel, 100, 100);
+            }
+            if (InventoryOpen)
+            {
+                g.FillRectangle(Brushes.Cyan, 0, 0, 200, 100);
+            }
+            else
+            {
+                g.FillRectangle(Brushes.Cyan, 0, 0, 200, 30);
             }
             if (DrawMap == true)
             {
@@ -236,6 +246,7 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
+            
             
 
 
@@ -658,6 +669,17 @@ namespace Attempt1V2
             if (e.KeyCode == Keys.Up)
             {
                 jump = true;
+            }
+            if (e.KeyCode == Keys.E)
+            {
+                if (InventoryOpen == false)
+                {
+                    InventoryOpen = true;
+                }
+                else if (InventoryOpen)
+                {
+                    InventoryOpen = false;
+                }
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
