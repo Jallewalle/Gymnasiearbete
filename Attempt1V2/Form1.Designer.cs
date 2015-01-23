@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.BreakBlocks = new System.Windows.Forms.Timer(this.components);
+            this.updatetimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // timer1
@@ -43,6 +44,11 @@
             // 
             this.BreakBlocks.Interval = 1;
             this.BreakBlocks.Tick += new System.EventHandler(this.BreakBlocks_Tick);
+            // 
+            // updatetimer
+            // 
+            this.updatetimer.Interval = 100000;
+            this.updatetimer.Tick += new System.EventHandler(this.updatetimer_Tick);
             // 
             // Form1
             // 
@@ -69,6 +75,7 @@
 
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer BreakBlocks;
+        private System.Windows.Forms.Timer updatetimer;
     }
 }
 

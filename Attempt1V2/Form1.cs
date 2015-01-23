@@ -21,12 +21,13 @@ namespace Attempt1V2
 
     public partial class Form1 : Form
     {
-        List<List<List<int>>> Block = new List<List<List<int>>>();
+        public List<List<List<int>>> Block = new List<List<List<int>>>();
         Random random = new Random();
+        Updating updating;
         public Form1()
         {
             InitializeComponent();
-
+            updating = new Updating();
             for (int i = 0; i < 70; i++)
             {
                 Block.Add(new List<List<int>>());
@@ -622,9 +623,6 @@ namespace Attempt1V2
 
                 for (int Ycord = random.Next(10, 30); Ycord < Block.Count; Ycord++)
                 {
-
-
-
                     for (int Xcord = 1; Xcord < Block[Ycord].Count; Xcord++)
                     {
                         if (Block[Ycord - 1][Xcord - 1][0] != -1 &&
@@ -947,6 +945,11 @@ namespace Attempt1V2
                     MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
                 }
             }
+        }
+
+        private void updatetimer_Tick(object sender, EventArgs e)
+        {
+            updating.updaterar();
         }
     }
 }
