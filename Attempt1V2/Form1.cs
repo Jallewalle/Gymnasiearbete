@@ -150,7 +150,7 @@ namespace Attempt1V2
             }
             if (InventoryOpen)
             {
-                g.FillRectangle(Brushes.Cyan, 0, 0, 200, 100);
+                g.FillRectangle(Brushes.Cyan, 0, 0, 200, 120);
             }
             else
             {
