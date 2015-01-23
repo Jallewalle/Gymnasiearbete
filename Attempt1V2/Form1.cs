@@ -11,6 +11,13 @@ using System.Threading;
 
 namespace Attempt1V2
 {
+       //inventory
+       //AI
+       //mineraler
+       //crafting
+       //spara det
+       //items/droprate
+
     public partial class Form1 : Form
     {
         List<List<List<int>>> Block = new List<List<List<int>>>();
@@ -85,6 +92,7 @@ namespace Attempt1V2
 
         int lvl = 1;
         int xp = 0;
+        int BlocksDestroyed = 0;
 
         int BreakGrass = 100;
         int BreakStone = 200;
@@ -118,6 +126,7 @@ namespace Attempt1V2
         Image PlayerJumping1 = Attempt1V2.Properties.Resources.gub32; //Vänster
         Image PlayerJumping2 = Attempt1V2.Properties.Resources.gub31; //Höger
         int imagepic = 0;
+
         #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -247,9 +256,12 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
-            
-            
 
+
+            Font drawFont = new Font("Arial", 16);
+            PointF drawPoint = new PointF(150.0F, 150.0F);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+            g.DrawString(BlockMove.ToString(), drawFont, drawBrush, drawPoint);
 
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
@@ -702,6 +714,7 @@ namespace Attempt1V2
             if (move)
             {
                 if (Höger == true &&
+                    BlockMove < 648 &&
                     (
                     (Block[playerY + jumpblock + 0][playerX + 2 + BlockMove][0] == -1) &&
                     (Block[playerY + jumpblock + 1][playerX + 2 + BlockMove][0] == -1) &&
@@ -912,6 +925,8 @@ namespace Attempt1V2
             {
                 Block[mouseYremove][mouseXremove].RemoveAt(0);
                 Block[mouseYremove][mouseXremove].Add(-1);
+                BlocksDestroyed++;
+
                 //lvl / 1.375 * 1000
                 if (xp >= lvl / 1.375 * 1000 && lvl != 99)
                 {
