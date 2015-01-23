@@ -73,6 +73,16 @@ namespace Attempt1V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fallskärm {
+            get {
+                object obj = ResourceManager.GetObject("fallskärm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Gräsjord {
             get {
                 object obj = ResourceManager.GetObject("Gräsjord", resourceCulture);

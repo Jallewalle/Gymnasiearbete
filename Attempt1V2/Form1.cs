@@ -115,6 +115,8 @@ namespace Attempt1V2
         Image PlayerRunning5 = Attempt1V2.Properties.Resources.gub21;
         Image PlayerRunning6 = Attempt1V2.Properties.Resources.gub251;
 
+        Image fallskärm = Attempt1V2.Properties.Resources.fallskärm;
+
         Image PlayerJumping1 = Attempt1V2.Properties.Resources.gub32; //Vänster
         Image PlayerJumping2 = Attempt1V2.Properties.Resources.gub31; //Höger
         int imagepic = 0;
@@ -143,6 +145,10 @@ namespace Attempt1V2
             else
             {
                 g.FillRectangle(Brushes.Cyan, 0, 0, 200, 30);
+            }
+            if (falla)
+            {
+                g.DrawImage(fallskärm, xoffset + playerX * 20 - 28, 210, 120, 115);
             }
             if (DrawMap == true)
             {
@@ -855,6 +861,7 @@ namespace Attempt1V2
                     chockground = true;
                 if (gravity < -14)
                 {
+
                     chockground = false;
                     gravity = 14;
                     jump = false;
