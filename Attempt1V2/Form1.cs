@@ -188,12 +188,13 @@ namespace Attempt1V2
             {
                 if (Vänster == true || (Höger == false && Vänster == false && Lastmove == 2))
                     g.DrawImage(PlayerJumping1, xoffset + playerX * 20, 250, 40, 60);
+
                 if (Höger == true || (Höger == false && Vänster == false && Lastmove == 1))
                     g.DrawImage(PlayerJumping2, xoffset + playerX * 20, 250, 40, 60);
             }
             if (Höger == false && Vänster == false && falla == false && jump == false)
             {
-                if ( Lastmove == 2)
+                if (Lastmove == 2)
                 {
                     g.DrawImage(PlayerRunning2, xoffset + playerX * 20, 250, 40, 60);
                 }
@@ -202,7 +203,7 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
-            else if (imagepic == 1)
+            else if (imagepic == 1 && jump == false && falla == false)
             {
                 if (Vänster)
                 {
@@ -213,7 +214,7 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning4, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
-            else if (imagepic == 2)
+            else if (imagepic == 2 && jump == false && falla == false)
             {
                 if (Vänster)
                 {
@@ -224,7 +225,7 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
-            else if (imagepic == 3)
+            else if (imagepic == 3 && jump == false && falla == false)
             {
                 if (Vänster)
                 {
@@ -235,7 +236,7 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning6, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
-            else if (imagepic == 4)
+            else if (imagepic == 4 && jump == false && falla == false)
             {
                 if (Vänster)
                 {
@@ -893,15 +894,7 @@ namespace Attempt1V2
         {
             Breaking = 0;
             BreakBlocks.Enabled = false;
-            //lvl / 1.375 * 1000
-            if (xp >= 1 && lvl != 99)
-            {
-                lvl++;
-                BreakGrass -= 1;
-                BreakStone -= 2;
-                xp = 0;
-                MessageBox.Show("lvl up!" + " Now lvl" + lvl);
-            }
+
         }
         private void BreakBlocks_Tick(object sender, EventArgs e)
         {
@@ -919,6 +912,15 @@ namespace Attempt1V2
             {
                 Block[mouseYremove][mouseXremove].RemoveAt(0);
                 Block[mouseYremove][mouseXremove].Add(-1);
+                //lvl / 1.375 * 1000
+                if (xp >= lvl / 1.375 * 1000 && lvl != 99)
+                {
+                    lvl++;
+                    BreakGrass -= 1;
+                    BreakStone -= 2;
+                    xp = 0;
+                    MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
+                }
             }
         }
     }
