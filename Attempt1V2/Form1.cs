@@ -39,6 +39,10 @@ namespace Attempt1V2
             }
         }
         #region variabler
+
+        public int test1 = 0;
+
+
         public int cinematic = 0;
         public int längd = 0;
         public int typ = 0;
@@ -56,11 +60,11 @@ namespace Attempt1V2
         bool DrawMap = false;
         bool InventoryOpen = false;
 
-        const int GRASS = 0;
-        const int SAND = 1;
-        const int DIRT = 2;
-        const int STONE = 3;
-        const int WATER = 4;
+        public const int GRASS = 0;
+        public const int SAND = 1;
+        public const int DIRT = 2;
+        public const int STONE = 3;
+        public const int WATER = 4;
 
         int underblock = 0;
 
@@ -269,9 +273,13 @@ namespace Attempt1V2
             Font drawFont = new Font("Arial", 16);
             PointF drawPoint = new PointF(150.0F, 150.0F);
             PointF drawPoint2 = new PointF(150.0F, 165.0F);
+            PointF drawPoint3 = new PointF(150.0F, 180.0F);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
+
+
             g.DrawString(BlockMove.ToString(), drawFont, drawBrush, drawPoint);
             g.DrawString((jumpblock + 15).ToString(), drawFont, drawBrush, drawPoint2);
+            g.DrawString((test1).ToString(), drawFont, drawBrush, drawPoint3);
 
             g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }

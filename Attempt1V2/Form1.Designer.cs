@@ -47,7 +47,7 @@
             // 
             // updatetimer
             // 
-            this.updatetimer.Interval = 100000;
+            this.updatetimer.Enabled = true;
             this.updatetimer.Tick += new System.EventHandler(this.updatetimer_Tick);
             // 
             // Form1

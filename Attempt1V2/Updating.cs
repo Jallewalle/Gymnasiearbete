@@ -12,6 +12,7 @@ namespace Attempt1V2
         public void updaterar()
         {
             form1 = new Form1();
+            form1.test1++;
             for (int blockx = 1; blockx < form1.Block[0].Count; blockx++)
             {
                 for (int blocky = 1; blocky < form1.Block.Count; blocky++)
@@ -21,6 +22,12 @@ namespace Attempt1V2
                     {
                         form1.Block[blocky][blockx].RemoveAt(0);
                         form1.Block[blocky][blockx].Add(5);
+                    }
+                    if (form1.Block[blocky][blockx][0] == 2 &&
+                        form1.Block[blocky - 1][blockx][0] == -1)
+                    {
+                        form1.Block[blocky][blockx].RemoveAt(0);
+                        form1.Block[blocky][blockx].Add(0);
                     }
                 }
             }
