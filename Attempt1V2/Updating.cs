@@ -13,9 +13,9 @@ namespace Attempt1V2
         {
             form1 = new Form1();
             form1.test1++;
-            for (int blockx = 1; blockx < form1.Block[0].Count; blockx++)
+            for (int blockx = form1.BlockMove; blockx < form1.BlockMove + 10; blockx++)
             {
-                for (int blocky = 1; blocky < form1.Block.Count; blocky++)
+                for (int blocky = form1.jumpblock; blocky < form1.jumpblock + 10; blocky++)
                 {
                     if (form1.Block[blocky][blockx][0] == 4 &&
                         form1.Block[blocky - 1][blockx][0] == 5)

@@ -68,9 +68,9 @@ namespace Attempt1V2
 
         int underblock = 0;
 
-        int PixelMove = 0;
-        int BlockMove = 0;
-        int jumpblock = 0;
+        public int PixelMove = 0;
+        public int BlockMove = 0;
+        public int jumpblock = 0;
 
         bool Höger = false;
         bool Vänster = false;
