@@ -12,9 +12,9 @@ namespace Attempt1V2
         public void updaterar(Form1 form1)
         {
             this.form1 = form1;
-            for (int blockx = form1.BlockMove; blockx < form1.BlockMove + 10; blockx++)
+            for (int blockx = form1.BlockMove - 5 + form1.playerX; blockx < form1.BlockMove + 5 + form1.playerX; blockx++)
             {
-                for (int blocky = form1.jumpblock; blocky < form1.jumpblock + 10; blocky++)
+                for (int blocky = form1.jumpblock - 10 + form1.playerY; blocky < form1.jumpblock + 10 + form1.playerY; blocky++)
                 {
                     if (form1.Block[blocky][blockx][0] == 4 &&
                         form1.Block[blocky - 1][blockx][0] == 5)
@@ -26,7 +26,7 @@ namespace Attempt1V2
                         form1.Block[blocky - 1][blockx][0] == -1)
                     {
                         form1.Block[blocky][blockx].RemoveAt(0);
-                        form1.Block[blocky][blockx].Add(0);
+                        form1.Block[blocky][blockx].Add(-1);
                     }
                 }
             }

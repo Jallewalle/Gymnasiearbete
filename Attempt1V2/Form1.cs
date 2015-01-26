@@ -88,8 +88,8 @@ namespace Attempt1V2
 
         int blockstorlek = 20;
 
-        int playerX = 15;
-        int playerY = 15;
+        public int playerX = 15;
+        public int playerY = 15;
 
         int mouseX = 0;
         int mouseY = 0;
