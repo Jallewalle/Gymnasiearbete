@@ -9,10 +9,9 @@ namespace Attempt1V2
     class Updating
     {
         Form1 form1;
-        public void updaterar()
+        public void updaterar(Form1 form1)
         {
-            form1 = new Form1();
-            form1.test1++;
+            this.form1 = form1;
             for (int blockx = form1.BlockMove; blockx < form1.BlockMove + 10; blockx++)
             {
                 for (int blocky = form1.jumpblock; blocky < form1.jumpblock + 10; blocky++)

@@ -281,7 +281,7 @@ namespace Attempt1V2
             g.DrawString((jumpblock + 15).ToString(), drawFont, drawBrush, drawPoint2);
             g.DrawString((test1).ToString(), drawFont, drawBrush, drawPoint3);
 
-            g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
+            //g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
         public void Cinematic()
         {
@@ -895,8 +895,8 @@ namespace Attempt1V2
         }
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            base.OnMouseMove(e);
-            Cursor.Hide();
+            //base.OnMouseMove(e);
+            //Cursor.Hide();
             mouseX = e.X;
             mouseY = e.Y;
         }
@@ -957,7 +957,8 @@ namespace Attempt1V2
 
         private void updatetimer_Tick(object sender, EventArgs e)
         {
-            updating.updaterar();
+            test1++;
+            updating.updaterar(this);
         }
     }
 }
