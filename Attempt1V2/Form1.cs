@@ -24,10 +24,12 @@ namespace Attempt1V2
         public List<List<List<int>>> Block = new List<List<List<int>>>();
         Random random = new Random();
         Updating updating;
+        OnStartUpUpdate onstartupupdate;
         public Form1()
         {
             InitializeComponent();
             updating = new Updating();
+            onstartupupdate = new OnStartUpUpdate();
             for (int i = 0; i < 70; i++)
             {
                 Block.Add(new List<List<int>>());
@@ -678,10 +680,12 @@ namespace Attempt1V2
                                 break;
                             }
                         }
+                        MessageBox.Show("");
                     }
                 }
             }
-            Refresh();
+            onstartupupdate.updatingonstartup(this);
+            //Refresh();
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
