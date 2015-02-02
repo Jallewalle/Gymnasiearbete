@@ -620,7 +620,6 @@ namespace Attempt1V2
                 }
                 #endregion
             }
-            Refresh();
             SkapaVatten();
             #endregion
         }
@@ -680,12 +679,11 @@ namespace Attempt1V2
                                 break;
                             }
                         }
-                        MessageBox.Show("");
+                        
                     }
                 }
             }
             onstartupupdate.updatingonstartup(this);
-            //Refresh();
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
