@@ -16,15 +16,16 @@ namespace Attempt1V2
             {
                 for (int blocky = form1.jumpblock - 10 + form1.playerY; blocky < form1.jumpblock + 10 + form1.playerY; blocky++)
                 {
-                    
-                    if (form1.Block[blocky][blockx][0] == 2 &&
-                        form1.Block[blocky - 1][blockx][0] == -1)
+                    if (blocky >= 1)
                     {
-                        form1.Block[blocky][blockx].RemoveAt(0);
-                        form1.Block[blocky][blockx].Add(0);
-                        break;
-                    }
-                    
+                        if (form1.Block[blocky][blockx][0] == 2 &&
+                            form1.Block[blocky - 1][blockx][0] == -1)
+                        {
+                            form1.Block[blocky][blockx].RemoveAt(0);
+                            form1.Block[blocky][blockx].Add(0);
+                            break;
+                        }
+                    } 
                 }
             }
         }

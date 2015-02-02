@@ -26,7 +26,7 @@ namespace Attempt1V2
 
                     //kolla topp gräs
                     if (form1.Block[blocky][blockx][0] == 0 &&
-                        form1.Block[blocky - 1][blockx][0] == 0)
+                       form1.Block[blocky - 1][blockx][0] != -1)
                     {
                         form1.Block[blocky][blockx].RemoveAt(0);
                         form1.Block[blocky][blockx].Add(2);
