@@ -11,13 +11,13 @@ using System.Threading;
 
 namespace Attempt1V2
 {
-       //inventory
-       //AI
-       //mineraler  (iron, silver, gold, )
-       //träd
-       //crafting
-       //spara det
-       //items/droprate
+    //inventory
+    //AI
+    //mineraler  (iron, silver, gold, )
+    //träd
+    //crafting
+    //spara det
+    //items/droprate
 
     public partial class Form1 : Form
     {
@@ -51,6 +51,14 @@ namespace Attempt1V2
         public int y = 0;
         public int skapa = 1;
 
+
+        public int woodcutting = 1;
+        public int blocksDestroyed = 0;
+        public int blocksPlaced = 0;
+        public int Jumps = 0;
+
+
+
         int vattenX = 0;
         int vattenY = 0;
         int vattenstop = 0;
@@ -59,6 +67,7 @@ namespace Attempt1V2
         bool meny = false;
         bool DrawMap = false;
         bool InventoryOpen = false;
+        bool iluften = false;
 
         public const int GRASS = 0;
         public const int SAND = 1;
@@ -147,7 +156,7 @@ namespace Attempt1V2
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            
+
             Graphics g = e.Graphics;
             if (meny == true)
             {
@@ -155,15 +164,16 @@ namespace Attempt1V2
             }
             if (InventoryOpen)
             {
-                g.FillRectangle(Brushes.Cyan, 0, 0, 200, 120);
+                g.FillRectangle(Brushes.Cyan, 0, 0, 400, 200);
             }
             else
             {
-                g.FillRectangle(Brushes.Cyan, 0, 0, 200, 30);
+                g.FillRectangle(Brushes.Cyan, 0, 0, 400, 50);
             }
             if (falla)
             {
                 g.DrawImage(fallskärm, xoffset + playerX * 20 - 28, 210, 120, 115);
+                g.DrawImage(PlayerJumping2, xoffset + playerX * 20, 250, 40, 60);
             }
             if (DrawMap == true)
             {
@@ -205,8 +215,10 @@ namespace Attempt1V2
                     }
                 }
             }
+
             if (jump == true || falla == true)
             {
+                iluften = true;
                 if (Vänster == true || (Höger == false && Vänster == false && Lastmove == 2))
                     g.DrawImage(PlayerJumping1, xoffset + playerX * 20, 250, 40, 60);
 
@@ -275,8 +287,10 @@ namespace Attempt1V2
             PointF drawPoint2 = new PointF(150.0F, 165.0F);
             PointF drawPoint3 = new PointF(150.0F, 180.0F);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
+            PointF drawpoint4 = new PointF(420.0F, 25.0F);
 
 
+            g.DrawString(Jumps.ToString(), drawFont, drawBrush, drawpoint4);
             g.DrawString(BlockMove.ToString(), drawFont, drawBrush, drawPoint);
             g.DrawString((jumpblock + 15).ToString(), drawFont, drawBrush, drawPoint2);
             g.DrawString((test1).ToString(), drawFont, drawBrush, drawPoint3);
@@ -694,8 +708,14 @@ namespace Attempt1V2
             {
                 Vänster = true;
             }
+            if (e.KeyCode == Keys.Up &&falla == false && jump == false)
+            {
+                Jumps++;
+            }
+
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space)
             {
+
                 jump = true;
             }
             if (e.KeyCode == Keys.E)
@@ -773,7 +793,7 @@ namespace Attempt1V2
                     if (PixelMove % 5 == 0)
                     {
                         imagepic++;
-                        
+
                         if (imagepic == 5)
                         {
                             imagepic = 1;
@@ -883,11 +903,11 @@ namespace Attempt1V2
                     chockground = true;
                 if (gravity < -14)
                 {
-
                     chockground = false;
                     gravity = 14;
                     jump = false;
                 }
+
             }
             #endregion
             #endregion
