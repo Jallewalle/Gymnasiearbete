@@ -150,6 +150,8 @@ namespace Attempt1V2
         private void Form1_Load(object sender, EventArgs e)
         {
             Cinematic();
+            SkapaVatten();
+            onstartupupdate.updatingonstartup(this);
         }
         public void Meny1()
         {
@@ -175,7 +177,6 @@ namespace Attempt1V2
             if (falla)
             {
                 g.DrawImage(fallskärm, xoffset + playerX * 20 - 28, 210, 120, 115);
-                g.DrawImage(PlayerJumping2, xoffset + playerX * 20, 250, 40, 60);
             }
             if (DrawMap == true)
             {
@@ -634,7 +635,7 @@ namespace Attempt1V2
                 }
                 #endregion
             }
-            SkapaVatten();
+            //SkapaVatten();
             #endregion
         }
         public void SkapaVatten()
@@ -697,7 +698,7 @@ namespace Attempt1V2
                     }
                 }
             }
-            onstartupupdate.updatingonstartup(this);
+            //onstartupupdate.updatingonstartup(this);
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -715,9 +716,14 @@ namespace Attempt1V2
                 Jumps++;
             }
 
+            if (e.KeyCode == Keys.Home)
+            {
+                BlockMove = 350;
+                jumpblock = 0;
+            }
+
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space)
             {
-
                 jump = true;
             }
             if (e.KeyCode == Keys.E)
@@ -730,6 +736,17 @@ namespace Attempt1V2
                 {
                     InventoryOpen = false;
                 }
+            }
+
+            if (e.KeyCode == Keys.T)
+            {
+                button1.Enabled = true;
+                tbx_x.Enabled = true;
+                tbx_y.Enabled = true;
+                button1.Visible = true;
+                tbx_x.Visible = true;
+                tbx_y.Visible = true;
+                tbx_x.Focus();
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -981,6 +998,21 @@ namespace Attempt1V2
         {
             test1++;
             updating.updaterar(this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string temp1 = tbx_x.Text;
+            string temp2 = tbx_y.Text;
+
+            BlockMove = Convert.ToInt32(temp1);
+            jumpblock = Convert.ToInt32(temp2) -10;
+            button1.Enabled = false;
+            tbx_x.Enabled = false;
+            tbx_y.Enabled = false;
+            button1.Visible = false;
+            tbx_x.Visible = false;
+            tbx_y.Visible = false;
         }
     }
 }
