@@ -158,6 +158,7 @@
     <None Include="Resources\gubv2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\träd2.png" />
     <None Include="Resources\fallskärm.png" />
     <Content Include="Resources\gub21.png" />
     <Content Include="Resources\gub22.png" />
