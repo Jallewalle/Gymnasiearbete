@@ -1028,7 +1028,7 @@ namespace Attempt1V2
                 BlocksDestroyed++;
 
                 //lvl / 1.375 * 1000
-                if (xp >= lvl / 1.375 * 1000 && lvl != 99)
+                if (xp >= 1 && lvl != 99)
                 {
                     lvl++;
                     BreakGrass -= 1;
