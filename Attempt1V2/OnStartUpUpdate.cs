@@ -33,6 +33,7 @@ namespace Attempt1V2
                     }
                 }
             }
+            form1.spela = true;
         }
     }
 }
