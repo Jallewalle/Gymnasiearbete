@@ -897,7 +897,7 @@ namespace Attempt1V2
             if (falla == true)
             {
                 jumpheight++;
-                jumpheight++;
+                //jumpheight++;
                 if (jumpheight >= 20)
                 {
                     jumpblock++;
