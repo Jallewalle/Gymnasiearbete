@@ -166,7 +166,14 @@ namespace Attempt1V2
             {
                 g.DrawImage(Singel, 100, 100);
             }
-           
+            if (InventoryOpen)
+            {
+                g.FillRectangle(Brushes.Cyan, 0, 0, 400, 200);
+            }
+            else
+            {
+                g.FillRectangle(Brushes.Cyan, 0, 0, 400, 50);
+            }
             if (falla)
             {
                 g.DrawImage(fallskärm, xoffset + playerX * 20 - 28, 210, 120, 115);
@@ -276,58 +283,6 @@ namespace Attempt1V2
                     g.DrawImage(PlayerRunning5, xoffset + playerX * 20, 250, 40, 60);
                 }
             }
-            if (InventoryOpen)
-            {
-                g.FillRectangle(Brushes.Cyan, 0, 0, 410, 185);
-                #region inv
-
-
-                g.FillRectangle(Brushes.Black, 5, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 50, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 95, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 140, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 185, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 230, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 275, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 320, 50, 40, 40);
-                g.FillRectangle(Brushes.Black, 365, 50, 40, 40);
-
-                g.FillRectangle(Brushes.Black, 5, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 50, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 95, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 140, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 185, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 230, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 275, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 320, 95, 40, 40);
-                g.FillRectangle(Brushes.Black, 365, 95, 40, 40);
-
-                g.FillRectangle(Brushes.Black, 5, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 50, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 95, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 140, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 185, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 230, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 275, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 320, 140, 40, 40);
-                g.FillRectangle(Brushes.Black, 365, 140, 40, 40);
-                #endregion
-
-            }
-            else
-            {
-                g.FillRectangle(Brushes.Cyan, 0, 0, 410, 50);
-            }
-            g.FillRectangle(Brushes.Black, 5, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 50, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 95, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 140, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 185, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 230, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 275, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 320, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 365, 5, 40, 40);
-            
 
 
             Font drawFont = new Font("Arial", 16);
