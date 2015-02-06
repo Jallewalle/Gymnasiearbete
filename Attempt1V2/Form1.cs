@@ -40,6 +40,9 @@ namespace Attempt1V2
                 }
             }
         }
+
+        public bool spela = false;
+
         #region variabler
 
         public int test1 = 0;
@@ -702,51 +705,54 @@ namespace Attempt1V2
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            move = true;
-            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
+            if (spela)
             {
-                Höger = true;
-            }
-            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
-            {
-                Vänster = true;
-            }
-            if (e.KeyCode == Keys.Up &&falla == false && jump == false)
-            {
-                Jumps++;
-            }
-
-            if (e.KeyCode == Keys.Home)
-            {
-                BlockMove = 350;
-                jumpblock = 0;
-            }
-
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space)
-            {
-                jump = true;
-            }
-            if (e.KeyCode == Keys.E)
-            {
-                if (InventoryOpen == false)
+                move = true;
+                if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
                 {
-                    InventoryOpen = true;
+                    Höger = true;
                 }
-                else if (InventoryOpen)
+                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
                 {
-                    InventoryOpen = false;
+                    Vänster = true;
                 }
-            }
+                if (e.KeyCode == Keys.Up && falla == false && jump == false)
+                {
+                    Jumps++;
+                }
 
-            if (e.KeyCode == Keys.T)
-            {
-                button1.Enabled = true;
-                tbx_x.Enabled = true;
-                tbx_y.Enabled = true;
-                button1.Visible = true;
-                tbx_x.Visible = true;
-                tbx_y.Visible = true;
-                tbx_x.Focus();
+                if (e.KeyCode == Keys.Home)
+                {
+                    BlockMove = 350;
+                    jumpblock = 0;
+                }
+
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space)
+                {
+                    jump = true;
+                }
+                if (e.KeyCode == Keys.E)
+                {
+                    if (InventoryOpen == false)
+                    {
+                        InventoryOpen = true;
+                    }
+                    else if (InventoryOpen)
+                    {
+                        InventoryOpen = false;
+                    }
+                }
+
+                if (e.KeyCode == Keys.T)
+                {
+                    button1.Enabled = true;
+                    tbx_x.Enabled = true;
+                    tbx_y.Enabled = true;
+                    button1.Visible = true;
+                    tbx_x.Visible = true;
+                    tbx_y.Visible = true;
+                    tbx_x.Focus();
+                }
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -993,13 +999,11 @@ namespace Attempt1V2
                 }
             }
         }
-
         private void updatetimer_Tick(object sender, EventArgs e)
         {
             test1++;
             updating.updaterar(this);
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string temp1 = tbx_x.Text;
