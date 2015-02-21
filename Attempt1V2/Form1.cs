@@ -22,7 +22,8 @@ namespace Attempt1V2
     public partial class Form1 : Form
     {
         public List<List<List<int>>> Block = new List<List<List<int>>>();
-        public List<List<List<int>>> Item = new List<List<List<int>>>();
+        List<int> item = new List<int>();
+
         Random random = new Random();
         Updating updating;
         OnStartUpUpdate onstartupupdate;
@@ -31,10 +32,10 @@ namespace Attempt1V2
             InitializeComponent();
             updating = new Updating();
             onstartupupdate = new OnStartUpUpdate();
-            for (int i = 0; i < 70; i++)
+            for (int i = 0; i < 700; i++)
             {
                 Block.Add(new List<List<int>>());
-                for (int u = 0; u < 700; u++)
+                for (int u = 0; u < 7000; u++)
                 {
                     Block[i].Add(new List<int>());
                     Block[i][u].Add(-1);
@@ -80,8 +81,9 @@ namespace Attempt1V2
         public const int STONE = 3;
         public const int TOPWATER = 4;
         public const int WATER = 5;
+        public const int TREE = 6;
 
-        int itemchoice = 0;
+        int itemchoice = 1;
 
         int underblock = 0;
 
@@ -357,7 +359,7 @@ namespace Attempt1V2
             y = 35;
             x = 0;
             #region cinematics
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 2000; i++)
             {
                 cinematic = random.Next(0, 5);
                 längd = random.Next(10, 20);
@@ -406,7 +408,7 @@ namespace Attempt1V2
                         {
                             y++;
                         }
-                        if (x < 698)
+                        if (x < 6998)
                         {
                             x++;
                         }
@@ -469,7 +471,7 @@ namespace Attempt1V2
                             break;
                         }
                     }
-                    if (x < 698)
+                    if (x < 6998)
                     {
                         x++;
                     }
@@ -511,7 +513,7 @@ namespace Attempt1V2
 
                         }
                         if (z != 0)
-                            if (x < 698)
+                            if (x < 6998)
                             {
                                 x++;
                             }
@@ -539,7 +541,7 @@ namespace Attempt1V2
                             break;
                         }
                     }
-                    if (x < 698)
+                    if (x < 6998)
                     {
                         x++;
                     }
@@ -576,7 +578,7 @@ namespace Attempt1V2
                                     break;
                                 }
                             }
-                            if (x < 698)
+                            if (x < 6998)
                             {
                                 x++;
                             }
@@ -607,7 +609,7 @@ namespace Attempt1V2
                             break;
                         }
                     }
-                    if (x < 698)
+                    if (x < 6998)
                     {
                         x++;
                     }
@@ -644,7 +646,7 @@ namespace Attempt1V2
                                     break;
                                 }
                             }
-                            if (x < 698)
+                            if (x < 6998)
                             {
                                 x++;
                             }
@@ -675,7 +677,7 @@ namespace Attempt1V2
                             break;
                         }
                     }
-                    if (x < 698)
+                    if (x < 6998)
                     {
                         x++;
                     }
@@ -802,43 +804,43 @@ namespace Attempt1V2
                     tbx_y.Visible = true;
                     tbx_x.Focus();
                 }
-                if (e.KeyCode == Keys.NumPad1)
+                if (e.KeyCode == Keys.D1)
                 {
                     itemchoice = 1;
                 }
-                if (e.KeyCode == Keys.NumPad2)
+                if (e.KeyCode == Keys.D2)
                 {
                     itemchoice = 2;
                 }
-                if (e.KeyCode == Keys.NumPad3)
+                if (e.KeyCode == Keys.D3)
                 {
                     itemchoice = 3;
                 }
-                if (e.KeyCode == Keys.NumPad4)
+                if (e.KeyCode == Keys.D4)
                 {
                     itemchoice = 4;
                 }
-                if (e.KeyCode == Keys.NumPad5)
+                if (e.KeyCode == Keys.D5)
                 {
                     itemchoice = 5;
                 }
-                if (e.KeyCode == Keys.NumPad6)
+                if (e.KeyCode == Keys.D6)
                 {
                     itemchoice = 6;
                 }
-                if (e.KeyCode == Keys.NumPad7)
+                if (e.KeyCode == Keys.D7)
                 {
                     itemchoice = 7;
                 }
-                if (e.KeyCode == Keys.NumPad8)
+                if (e.KeyCode == Keys.D8)
                 {
                     itemchoice = 8;
                 }
-                if (e.KeyCode == Keys.NumPad9)
+                if (e.KeyCode == Keys.D9)
                 {
                     itemchoice = 9;
                 }
-                if (e.KeyCode == Keys.NumPad0)
+                if (e.KeyCode == Keys.D0)
                 {
                     itemchoice = 0;
                 }
@@ -864,7 +866,7 @@ namespace Attempt1V2
             if (move)
             {
                 if (Höger == true &&
-                    BlockMove < 648 &&
+                    BlockMove < Block[0].Count - 52 &&
                     (
                     (Block[playerY + jumpblock + 0][playerX + 2 + BlockMove][0] == -1) &&
                     (Block[playerY + jumpblock + 1][playerX + 2 + BlockMove][0] == -1) &&
@@ -1039,7 +1041,9 @@ namespace Attempt1V2
         {
             int mouseXadd = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
             int mouseYadd = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
-            if (e.Button == MouseButtons.Right)
+            try
+            {
+                if (e.Button == MouseButtons.Right)
             {
                 if (
                     (
@@ -1059,6 +1063,12 @@ namespace Attempt1V2
                     Block[mouseYadd][mouseXadd].Add(1);
                 }
             }
+            }
+            catch (Exception)
+            {
+                
+                
+            }
         }
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1066,11 +1076,13 @@ namespace Attempt1V2
             mouseYremove = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
 
             if (
+                (
                 (mouseXremove - (playerX + BlockMove) <= +5) &&
                 (mouseXremove - (playerX + BlockMove) >= -5) &&
                 (mouseYremove - (playerY + jumpblock) <= +5) &&
                 (mouseYremove - (playerY + jumpblock) >= -5)
-                )
+                ) &&
+                itemchoice == 2)
             {
                 BreakBlocks.Enabled = true;
             }

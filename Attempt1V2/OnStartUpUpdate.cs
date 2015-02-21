@@ -17,12 +17,12 @@ namespace Attempt1V2
                 for (int blockx = 0; blockx < form1.Block[blocky].Count; blockx++)
                 {
                     //kolla topp vatten
-                    if (form1.Block[blocky][blockx][0] == 4 &&
-                        form1.Block[blocky - 1][blockx][0] == 5)
-                    {
-                        form1.Block[blocky][blockx].RemoveAt(0);
-                        form1.Block[blocky][blockx].Add(5);
-                    }
+                    //if (form1.Block[blocky][blockx][0] == 4 &&
+                    //    form1.Block[blocky - 1][blockx][0] == 5)
+                    //{
+                    //    form1.Block[blocky][blockx].RemoveAt(0);
+                    //    form1.Block[blocky][blockx].Add(5);
+                    //}
 
                     //kolla topp gräs
                     if (form1.Block[blocky][blockx][0] == 0 &&
