@@ -22,6 +22,7 @@ namespace Attempt1V2
     public partial class Form1 : Form
     {
         public List<List<List<int>>> Block = new List<List<List<int>>>();
+        public List<List<List<int>>> Item = new List<List<List<int>>>();
         Random random = new Random();
         Updating updating;
         OnStartUpUpdate onstartupupdate;
@@ -72,13 +73,15 @@ namespace Attempt1V2
         bool meny = false;
         bool DrawMap = false;
         bool InventoryOpen = false;
-        bool iluften = false;
 
         public const int GRASS = 0;
         public const int SAND = 1;
         public const int DIRT = 2;
         public const int STONE = 3;
-        public const int WATER = 4;
+        public const int TOPWATER = 4;
+        public const int WATER = 5;
+
+        int itemchoice = 0;
 
         int underblock = 0;
 
@@ -217,7 +220,7 @@ namespace Attempt1V2
 
             if (jump == true || falla == true)
             {
-                iluften = true;
+
                 if (Vänster == true || (Höger == false && Vänster == false && Lastmove == 2))
                     g.DrawImage(PlayerJumping1, xoffset + playerX * 20, 250, 40, 60);
 
@@ -769,10 +772,11 @@ namespace Attempt1V2
                 if (e.KeyCode == Keys.Home)
                 {
                     BlockMove = 350;
-                    jumpblock = 0;
+                    jumpblock = -14;
                 }
 
-                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space)
+                if ((e.KeyCode == Keys.Up || e.KeyCode == Keys.W || e.KeyCode == Keys.Space) &&
+                    jumpblock + playerY > 4)
                 {
                     jump = true;
                 }
@@ -798,6 +802,47 @@ namespace Attempt1V2
                     tbx_y.Visible = true;
                     tbx_x.Focus();
                 }
+                if (e.KeyCode == Keys.NumPad1)
+                {
+                    itemchoice = 1;
+                }
+                if (e.KeyCode == Keys.NumPad2)
+                {
+                    itemchoice = 2;
+                }
+                if (e.KeyCode == Keys.NumPad3)
+                {
+                    itemchoice = 3;
+                }
+                if (e.KeyCode == Keys.NumPad4)
+                {
+                    itemchoice = 4;
+                }
+                if (e.KeyCode == Keys.NumPad5)
+                {
+                    itemchoice = 5;
+                }
+                if (e.KeyCode == Keys.NumPad6)
+                {
+                    itemchoice = 6;
+                }
+                if (e.KeyCode == Keys.NumPad7)
+                {
+                    itemchoice = 7;
+                }
+                if (e.KeyCode == Keys.NumPad8)
+                {
+                    itemchoice = 8;
+                }
+                if (e.KeyCode == Keys.NumPad9)
+                {
+                    itemchoice = 9;
+                }
+                if (e.KeyCode == Keys.NumPad0)
+                {
+                    itemchoice = 0;
+                }
+
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -992,7 +1037,28 @@ namespace Attempt1V2
         }
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-
+            int mouseXadd = (mouseX - xoffset + PixelMove) / 20 + BlockMove;
+            int mouseYadd = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
+            if (e.Button == MouseButtons.Right)
+            {
+                if (
+                    (
+                    (mouseXadd - (playerX + BlockMove) <= +5) &&
+                    (mouseXadd - (playerX + BlockMove) >= -5) &&
+                    (mouseYadd - (playerY + jumpblock) <= +5) &&
+                    (mouseYadd - (playerY + jumpblock) >= -5)
+                    ) &&
+                    (
+                    Block[mouseYadd][mouseXadd][0] == -1 ||
+                    Block[mouseYadd][mouseXadd][0] == +4 ||
+                    Block[mouseYadd][mouseXadd][0] == +5
+                    )
+                    )
+                {
+                    Block[mouseYadd][mouseXadd].RemoveAt(0);
+                    Block[mouseYadd][mouseXadd].Add(1);
+                }
+            }
         }
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1019,8 +1085,9 @@ namespace Attempt1V2
         {
             Breaking++;
             xp++;
-
-            if (
+            try
+            {
+                if (
             (
             (Block[mouseYremove][mouseXremove][0] == GRASS ||
             Block[mouseYremove][mouseXremove][0] == SAND ||
@@ -1028,21 +1095,27 @@ namespace Attempt1V2
             Breaking == BreakGrass) ||
             Block[mouseYremove][mouseXremove][0] == STONE &&
             Breaking == BreakStone)
-            {
-                Block[mouseYremove][mouseXremove].RemoveAt(0);
-                Block[mouseYremove][mouseXremove].Add(-1);
-                BlocksDestroyed++;
-
-                //lvl / 1.375 * 1000
-                if (xp >= 1 && lvl != 99)
                 {
-                    lvl++;
-                    BreakGrass -= 1;
-                    BreakStone -= 2;
-                    xp = 0;
-                    MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
+                    Block[mouseYremove][mouseXremove].RemoveAt(0);
+                    Block[mouseYremove][mouseXremove].Add(-1);
+                    BlocksDestroyed++;
+
+                    //lvl / 1.375 * 1000
+                    if (xp >= 1 && lvl != 99)
+                    {
+                        lvl++;
+                        BreakGrass -= 1;
+                        BreakStone -= 2;
+                        xp = 0;
+                        MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                
+            }
+            
         }
         private void updatetimer_Tick(object sender, EventArgs e)
         {
