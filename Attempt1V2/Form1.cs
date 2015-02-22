@@ -390,10 +390,18 @@ namespace Attempt1V2
                             if (z + y == Block.Count - 1)
                                 break;
                         }
-                        for (int index = (y + Temp); index < 60; index++)
+                        for (int index = (y + Temp); index < 690; index++)
                         {
-                            Block[index][x].RemoveAt(0);
-                            Block[index][x].Add(DIRT);
+                            if (index <= 49)
+                            {
+                                Block[index][x].RemoveAt(0);
+                                Block[index][x].Add(DIRT);
+                            }
+                            if (index >= 50)
+                            {
+                                Block[index][x].RemoveAt(0);
+                                Block[index][x].Add(STONE);
+                            }
                             if (index == Block.Count)
                             {
                                 break;
@@ -437,10 +445,18 @@ namespace Attempt1V2
                                 if (o + y == Block.Count - 1)
                                     break;
                             }
-                            for (int index = (y + Temp); index < 60; index++)
+                            for (int index = (y + Temp); index < 690; index++)
                             {
-                                Block[index][x].RemoveAt(0);
-                                Block[index][x].Add(DIRT);
+                                if (index <= 49)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(DIRT);
+                                }
+                                if (index >= 50)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(STONE);
+                                }
                                 if (index == Block.Count)
                                 {
                                     break;
@@ -462,15 +478,24 @@ namespace Attempt1V2
                         if (o + y == Block.Count - 1)
                             break;
                     }
-                    for (int index = (y + Temp); index < 60; index++)
+                    for (int index = (y + Temp); index < 690; index++)
                     {
-                        Block[index][x].RemoveAt(0);
-                        Block[index][x].Add(DIRT);
+                        if (index <= 49)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(DIRT);
+                        }
+                        if (index >= 50)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(STONE);
+                        }
                         if (index == Block.Count)
                         {
                             break;
                         }
                     }
+                    
                     if (x < 6998)
                     {
                         x++;
@@ -499,10 +524,18 @@ namespace Attempt1V2
                                 if (o + y == Block.Count - 1)
                                     break;
                             }
-                            for (int index = (y + Temp); index < 60; index++)
+                            for (int index = (y + Temp); index < 690; index++)
                             {
-                                Block[index][x].RemoveAt(0);
-                                Block[index][x].Add(DIRT);
+                                if (index <= 49)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(DIRT);
+                                }
+                                if (index >= 50)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(STONE);
+                                }
                                 if (index == Block.Count)
                                 {
                                     break;
@@ -532,10 +565,18 @@ namespace Attempt1V2
                         if (o + y == Block.Count - 1)
                             break;
                     }
-                    for (int index = (y + Temp); index < 60; index++)
+                    for (int index = (y + Temp); index < 690; index++)
                     {
-                        Block[index][x].RemoveAt(0);
-                        Block[index][x].Add(DIRT);
+                        if (index <= 49)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(DIRT);
+                        }
+                        if (index >= 50)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(STONE);
+                        }
                         if (index == Block.Count)
                         {
                             break;
@@ -569,10 +610,18 @@ namespace Attempt1V2
                                 if (o + y == Block.Count - 1)
                                     break;
                             }
-                            for (int index = (y + Temp); index < 60; index++)
+                            for (int index = (y + Temp); index < 690; index++)
                             {
-                                Block[index][x].RemoveAt(0);
-                                Block[index][x].Add(DIRT);
+                                if (index <= 49)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(DIRT);
+                                }
+                                if (index >= 50)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(STONE);
+                                }
                                 if (index == Block.Count)
                                 {
                                     break;
@@ -600,10 +649,18 @@ namespace Attempt1V2
                         if (o + y == Block.Count - 1)
                             break;
                     }
-                    for (int index = (y + Temp); index < 60; index++)
+                    for (int index = (y + Temp); index < 690; index++)
                     {
-                        Block[index][x].RemoveAt(0);
-                        Block[index][x].Add(DIRT);
+                        if (index <= 49)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(DIRT);
+                        }
+                        if (index >= 50)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(STONE);
+                        }
                         if (index == Block.Count)
                         {
                             break;
@@ -637,10 +694,18 @@ namespace Attempt1V2
                                 if (o + y == Block.Count - 1)
                                     break;
                             }
-                            for (int index = (y + Temp); index < 60; index++)
+                            for (int index = (y + Temp); index < 690; index++)
                             {
-                                Block[index][x].RemoveAt(0);
-                                Block[index][x].Add(DIRT);
+                                if (index <= 49)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(DIRT);
+                                }
+                                if (index >= 50)
+                                {
+                                    Block[index][x].RemoveAt(0);
+                                    Block[index][x].Add(STONE);
+                                }
                                 if (index == Block.Count)
                                 {
                                     break;
@@ -668,10 +733,18 @@ namespace Attempt1V2
                         if (o + y == Block.Count - 1)
                             break;
                     }
-                    for (int index = (y + Temp); index < 60; index++)
+                    for (int index = (y + Temp); index < 690; index++)
                     {
-                        Block[index][x].RemoveAt(0);
-                        Block[index][x].Add(DIRT);
+                        if (index <= 49)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(DIRT);
+                        }
+                        if (index >= 50)
+                        {
+                            Block[index][x].RemoveAt(0);
+                            Block[index][x].Add(STONE);
+                        }
                         if (index == Block.Count)
                         {
                             break;
@@ -1119,7 +1192,7 @@ namespace Attempt1V2
                         BreakGrass -= 1;
                         BreakStone -= 2;
                         xp = 0;
-                        MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
+                        //MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
                     }
                 }
             }
