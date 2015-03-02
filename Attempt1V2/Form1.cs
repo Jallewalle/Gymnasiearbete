@@ -32,6 +32,10 @@ namespace Attempt1V2
             InitializeComponent();
             updating = new Updating();
             onstartupupdate = new OnStartUpUpdate();
+            for (int i = 0; i < 3; i++)
+            {
+                item.Add(0);
+            }
             for (int i = 0; i < 700; i++)
             {
                 Block.Add(new List<List<int>>());
@@ -174,7 +178,7 @@ namespace Attempt1V2
             {
                 g.DrawImage(Singel, 100, 100);
             }
-           
+
             if (falla)
             {
                 g.DrawImage(fallskärm, xoffset + playerX * 20 - 28, 210, 120, 115);
@@ -335,7 +339,7 @@ namespace Attempt1V2
             g.FillRectangle(Brushes.Black, 275, 5, 40, 40);
             g.FillRectangle(Brushes.Black, 320, 5, 40, 40);
             g.FillRectangle(Brushes.Black, 365, 5, 40, 40);
-            
+
 
 
             Font drawFont = new Font("Arial", 16);
@@ -495,7 +499,7 @@ namespace Attempt1V2
                             break;
                         }
                     }
-                    
+
                     if (x < 6998)
                     {
                         x++;
@@ -820,7 +824,7 @@ namespace Attempt1V2
                                 break;
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -1016,7 +1020,7 @@ namespace Attempt1V2
             }
             if (falla == true)
             {
-                jumpheight++;
+                //jumpheight++;
                 //jumpheight++;
                 if (jumpheight >= 20)
                 {
@@ -1116,31 +1120,50 @@ namespace Attempt1V2
             int mouseYadd = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
             try
             {
-                if (e.Button == MouseButtons.Right)
-            {
-                if (
-                    (
-                    (mouseXadd - (playerX + BlockMove) <= +5) &&
-                    (mouseXadd - (playerX + BlockMove) >= -5) &&
-                    (mouseYadd - (playerY + jumpblock) <= +5) &&
-                    (mouseYadd - (playerY + jumpblock) >= -5)
-                    ) &&
-                    (
-                    Block[mouseYadd][mouseXadd][0] == -1 ||
-                    Block[mouseYadd][mouseXadd][0] == +4 ||
-                    Block[mouseYadd][mouseXadd][0] == +5
-                    )
-                    )
-                {
-                    Block[mouseYadd][mouseXadd].RemoveAt(0);
-                    Block[mouseYadd][mouseXadd].Add(1);
-                }
-            }
+                //if (e.Button == MouseButtons.Left)
+                //{
+                    if (
+                        (
+                        (mouseXadd - (playerX + BlockMove) <= +5) &&
+                        (mouseXadd - (playerX + BlockMove) >= -5) &&
+                        (mouseYadd - (playerY + jumpblock) <= +5) &&
+                        (mouseYadd - (playerY + jumpblock) >= -5)
+                        ) &&
+                        (
+                        Block[mouseYadd][mouseXadd][0] == -1 ||
+                        Block[mouseYadd][mouseXadd][0] == +4 ||
+                        Block[mouseYadd][mouseXadd][0] == +5
+                        ) &&
+                        (
+                        (itemchoice == 3 && item[0] >= 1) ||
+                        (itemchoice == 4 && item[1] >= 1) ||
+                        (itemchoice == 5 && item[2] >= 1)
+                        )
+                        )
+                    {
+                        Block[mouseYadd][mouseXadd].RemoveAt(0);
+                        if (itemchoice == 3)
+                        {
+                            Block[mouseYadd][mouseXadd].Add(2);
+                            item[0]--;
+                        }
+                        if (itemchoice == 4)
+                        {
+                            Block[mouseYadd][mouseXadd].Add(3);
+                            item[1]--;
+                        }
+                        if (itemchoice == 5)
+                        {
+                            Block[mouseYadd][mouseXadd].Add(1);
+                            item[2]--;
+                        }
+                    }
+                //}
             }
             catch (Exception)
             {
-                
-                
+
+
             }
         }
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -1173,34 +1196,49 @@ namespace Attempt1V2
             try
             {
                 if (
-            (
-            (Block[mouseYremove][mouseXremove][0] == GRASS ||
-            Block[mouseYremove][mouseXremove][0] == SAND ||
-            Block[mouseYremove][mouseXremove][0] == DIRT) &&
-            Breaking == BreakGrass) ||
-            Block[mouseYremove][mouseXremove][0] == STONE &&
-            Breaking == BreakStone)
+                (
+                (Block[mouseYremove][mouseXremove][0] == GRASS ||
+                Block[mouseYremove][mouseXremove][0] == SAND ||
+                Block[mouseYremove][mouseXremove][0] == DIRT) &&
+                Breaking == BreakGrass) ||
+                Block[mouseYremove][mouseXremove][0] == STONE &&
+                Breaking == BreakStone)
                 {
+                    BlocksDestroyed++;
+                    if (Block[mouseYremove][mouseXremove][0] == DIRT ||
+                        Block[mouseYremove][mouseXremove][0] == GRASS)
+                    {
+                        item[0]++;
+                    }
+                    if (Block[mouseYremove][mouseXremove][0] == STONE)
+                    {
+                        item[1]++;
+                    }
+                    if (Block[mouseYremove][mouseXremove][0] == SAND)
+                    {
+                        item[2]++;
+                    }
+
                     Block[mouseYremove][mouseXremove].RemoveAt(0);
                     Block[mouseYremove][mouseXremove].Add(-1);
-                    BlocksDestroyed++;
 
-                    //lvl / 1.375 * 1000
-                    if (xp >= 1 && lvl != 99)
-                    {
-                        lvl++;
-                        BreakGrass -= 1;
-                        BreakStone -= 2;
-                        xp = 0;
-                        //MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
-                    }
+
+                        //lvl / 1.375 * 1000
+                        if (xp >= 1 && lvl != 99)
+                        {
+                            lvl++;
+                            BreakGrass -= 1;
+                            BreakStone -= 2;
+                            xp = 0;
+                            //MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
+                        }
                 }
             }
             catch (Exception)
             {
-                
+
             }
-            
+
         }
         private void updatetimer_Tick(object sender, EventArgs e)
         {
@@ -1213,7 +1251,7 @@ namespace Attempt1V2
             string temp2 = tbx_y.Text;
 
             BlockMove = Convert.ToInt32(temp1);
-            jumpblock = Convert.ToInt32(temp2) -10;
+            jumpblock = Convert.ToInt32(temp2) - 10;
             button1.Enabled = false;
             tbx_x.Enabled = false;
             tbx_y.Enabled = false;
