@@ -53,6 +53,15 @@ namespace Attempt1V2
 
         public int test1 = 0;
 
+        int largex = 7000;
+        int largey = 700;
+
+        int mediumx = 700;
+        int mediumy = 70;
+
+        int smallx = 350;
+        int smally = 50;
+
 
         public int cinematic = 0;
         public int längd = 0;
@@ -332,9 +341,9 @@ namespace Attempt1V2
             }
             g.FillRectangle(Brushes.Black, 5, 5, 40, 40);
             g.FillRectangle(Brushes.Black, 50, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 95, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 140, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 185, 5, 40, 40);
+            g.DrawImage(Jord, 95, 5, 40, 40);
+            g.DrawImage(Sten, 140, 5, 40, 40);
+            g.DrawImage(Sand, 185, 5, 40, 40);
             g.FillRectangle(Brushes.Black, 230, 5, 40, 40);
             g.FillRectangle(Brushes.Black, 275, 5, 40, 40);
             g.FillRectangle(Brushes.Black, 320, 5, 40, 40);
@@ -1021,7 +1030,7 @@ namespace Attempt1V2
             if (falla == true)
             {
                 //jumpheight++;
-                //jumpheight++;
+                jumpheight++;
                 if (jumpheight >= 20)
                 {
                     jumpblock++;
