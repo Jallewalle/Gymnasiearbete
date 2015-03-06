@@ -104,9 +104,9 @@ namespace Attempt1V2
         public int BlockMove = 0;
         public int jumpblock = 0;
 
-        bool Höger = false;
+        bool Höger = true;
         bool Vänster = false;
-        int Lastmove = 0;
+        int Lastmove = 1;
 
         bool jump = false;
         int jumpheight = 0;
@@ -351,18 +351,26 @@ namespace Attempt1V2
 
 
 
-            Font drawFont = new Font("Arial", 16);
+            Font drawFont = new Font("Arial", 14);
             PointF drawPoint = new PointF(150.0F, 150.0F);
             PointF drawPoint2 = new PointF(150.0F, 165.0F);
             PointF drawPoint3 = new PointF(150.0F, 180.0F);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             PointF drawpoint4 = new PointF(420.0F, 25.0F);
 
+            PointF drawpoint5 = new PointF(120.0F, 25.0F);
+            PointF drawpoint6 = new PointF(165.0F, 25.0F);
+            PointF drawpoint7 = new PointF(210.0F, 25.0F);
+
 
             g.DrawString(Jumps.ToString(), drawFont, drawBrush, drawpoint4);
             g.DrawString(BlockMove.ToString(), drawFont, drawBrush, drawPoint);
             g.DrawString((jumpblock + 15).ToString(), drawFont, drawBrush, drawPoint2);
             g.DrawString((test1).ToString(), drawFont, drawBrush, drawPoint3);
+
+            g.DrawString(item[0].ToString(), drawFont, drawBrush, drawpoint5);
+            g.DrawString(item[1].ToString(), drawFont, drawBrush, drawpoint6);
+            g.DrawString(item[2].ToString(), drawFont, drawBrush, drawpoint7);
 
             //g.FillRectangle(Brushes.Red, mouseX - 5, mouseY - 5, 10, 10);
         }
