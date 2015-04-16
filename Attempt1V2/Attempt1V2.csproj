@@ -159,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fallskärm.png" />
+    <None Include="Resources\bakrund.png" />
+    <None Include="Resources\bakgrund v32.png" />
     <Content Include="Resources\gub21.png" />
     <Content Include="Resources\gub22.png" />
     <None Include="Resources\gub221.png" />

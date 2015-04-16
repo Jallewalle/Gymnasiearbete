@@ -137,7 +137,7 @@ namespace Attempt1V2
 
         int Breaking = 0;
 
-        int xoffset = -5;
+        int xoffset = -25;
         int yoffset = -50;
 
         Image Singel = Attempt1V2.Properties.Resources.Namnlöst_1;
@@ -147,6 +147,9 @@ namespace Attempt1V2
         Image Gräs = Attempt1V2.Properties.Resources.Gräsjord;
         Image Jord = Attempt1V2.Properties.Resources.Jordv3;
         Image Sten = Attempt1V2.Properties.Resources.sten;
+
+        Image Bakrundsbild = Attempt1V2.Properties.Resources.bakrund;
+        Image Bakrundsbildv2 = Attempt1V2.Properties.Resources.bakgrund_v32;
 
         //Image Player = Attempt1V2.Properties.Resources.gub1;
         //Image JumpingPlayer = Attempt1V2.Properties.Resources.gub2;
@@ -183,6 +186,9 @@ namespace Attempt1V2
         {
 
             Graphics g = e.Graphics;
+
+            g.DrawImage(Bakrundsbildv2, 0 - BlockMove, 0 - jumpblock, 8000, 1262);
+
             if (meny == true)
             {
                 g.DrawImage(Singel, 100, 100);
@@ -827,7 +833,7 @@ namespace Attempt1V2
                     for (int i = vattenX; i < vattenstop; i++)
                     {
                         Block[vattenY][i].RemoveAt(0);
-                        Block[vattenY][i].Add(WATER);
+                        Block[vattenY][i].Add(TOPWATER);
                         (Block.Count - vattenY).ToString();
                         for (int vattenunder = 1; vattenunder < (Block.Count - vattenY); vattenunder++)
                         {
