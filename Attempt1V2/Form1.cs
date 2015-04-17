@@ -23,6 +23,7 @@ namespace Attempt1V2
     {
         public List<List<List<int>>> Block = new List<List<List<int>>>();
         List<int> item = new List<int>();
+        List<Image> ImagesList = new List<Image>();
 
         Random random = new Random();
         Updating updating;
@@ -204,36 +205,39 @@ namespace Attempt1V2
                 {
                     for (int u = BlockMove; u < 52 + BlockMove; u++)
                     {
+                        
 
                         x = xoffset + u * 20 - PixelMove - BlockMove * 20;
                         y = yoffset + i * 20 - jumpheight - jumpblock * 20;
 
-                        if (Block[i][u][0] != -1)
+                        if (Block[i][u][0] != -1) // om det är "-1" skall inget målas ut. Annars kollar det vad för typ utav block det är.
                         {
-                            if (Block[i][u][0] == 0)
-                            {
-                                g.DrawImage(Gräs, x, y, blockstorlek, blockstorlek);
-                            }
-                            else if (Block[i][u][0] == 1)
-                            {
-                                g.DrawImage(Sand, x, y, blockstorlek, blockstorlek);
-                            }
-                            else if (Block[i][u][0] == 2)
-                            {
-                                g.DrawImage(Jord, x, y, blockstorlek, blockstorlek);
-                            }
-                            else if (Block[i][u][0] == 3)
-                            {
-                                g.DrawImage(Sten, x, y, blockstorlek, blockstorlek);
-                            }
-                            else if (Block[i][u][0] == 4)
-                            {
-                                g.DrawImage(Toppvatten, x, y, blockstorlek, blockstorlek);
-                            }
-                            else if (Block[i][u][0] == 5)
-                            {
-                                g.DrawImage(Botvatten, x, y, blockstorlek, blockstorlek);
-                            }
+                            g.DrawImage(ImagesList[Block[i][u][0]], x, y, blockstorlek, blockstorlek);
+
+                            //if (Block[i][u][0] == 0)
+                            //{
+                            //    g.DrawImage(Gräs, x, y, blockstorlek, blockstorlek);
+                            //}
+                            //else if (Block[i][u][0] == 1)
+                            //{
+                            //    g.DrawImage(Sand, x, y, blockstorlek, blockstorlek);
+                            //}
+                            //else if (Block[i][u][0] == 2)
+                            //{
+                            //    g.DrawImage(Jord, x, y, blockstorlek, blockstorlek);
+                            //}
+                            //else if (Block[i][u][0] == 3)
+                            //{
+                            //    g.DrawImage(Sten, x, y, blockstorlek, blockstorlek);
+                            //}
+                            //else if (Block[i][u][0] == 4)
+                            //{
+                            //    g.DrawImage(Toppvatten, x, y, blockstorlek, blockstorlek);
+                            //}
+                            //else if (Block[i][u][0] == 5)
+                            //{
+                            //    g.DrawImage(Botvatten, x, y, blockstorlek, blockstorlek);
+                            //}
                         }
                     }
                 }
@@ -382,6 +386,12 @@ namespace Attempt1V2
         }
         public void Cinematic()
         {
+            ImagesList.Add(Gräs);
+            ImagesList.Add(Sand);
+            ImagesList.Add(Jord);
+            ImagesList.Add(Sten);
+            ImagesList.Add(Toppvatten);
+            ImagesList.Add(Botvatten);
             DrawMap = true;
             y = 35;
             x = 0;
