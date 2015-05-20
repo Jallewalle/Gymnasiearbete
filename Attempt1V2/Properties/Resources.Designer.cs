@@ -273,6 +273,16 @@ namespace Attempt1V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pick4xe3 {
+            get {
+                object obj = ResourceManager.GetObject("pick4xe3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sand {
             get {
                 object obj = ResourceManager.GetObject("Sand", resourceCulture);
@@ -296,6 +306,16 @@ namespace Attempt1V2.Properties {
         internal static System.Drawing.Bitmap sten {
             get {
                 object obj = ResourceManager.GetObject("sten", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sw0rd13 {
+            get {
+                object obj = ResourceManager.GetObject("sw0rd13", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

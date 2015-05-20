@@ -54,16 +54,6 @@ namespace Attempt1V2
 
         public int test1 = 0;
 
-        int largex = 7000;
-        int largey = 700;
-
-        int mediumx = 700;
-        int mediumy = 70;
-
-        int smallx = 350;
-        int smally = 50;
-
-
         public int cinematic = 0;
         public int längd = 0;
         public int typ = 0;
@@ -149,6 +139,9 @@ namespace Attempt1V2
         Image Jord = Attempt1V2.Properties.Resources.Jordv3;
         Image Sten = Attempt1V2.Properties.Resources.sten;
 
+        Image Inventorysvärd = Attempt1V2.Properties.Resources.sw0rd13;
+        Image Inventoryyxa = Attempt1V2.Properties.Resources.pick4xe3;
+
         Image Bakrundsbild = Attempt1V2.Properties.Resources.bakrund;
         Image Bakrundsbildv2 = Attempt1V2.Properties.Resources.bakgrund_v32;
 
@@ -214,30 +207,6 @@ namespace Attempt1V2
                         {
                             g.DrawImage(ImagesList[Block[i][u][0]], x, y, blockstorlek, blockstorlek);
 
-                            //if (Block[i][u][0] == 0)
-                            //{
-                            //    g.DrawImage(Gräs, x, y, blockstorlek, blockstorlek);
-                            //}
-                            //else if (Block[i][u][0] == 1)
-                            //{
-                            //    g.DrawImage(Sand, x, y, blockstorlek, blockstorlek);
-                            //}
-                            //else if (Block[i][u][0] == 2)
-                            //{
-                            //    g.DrawImage(Jord, x, y, blockstorlek, blockstorlek);
-                            //}
-                            //else if (Block[i][u][0] == 3)
-                            //{
-                            //    g.DrawImage(Sten, x, y, blockstorlek, blockstorlek);
-                            //}
-                            //else if (Block[i][u][0] == 4)
-                            //{
-                            //    g.DrawImage(Toppvatten, x, y, blockstorlek, blockstorlek);
-                            //}
-                            //else if (Block[i][u][0] == 5)
-                            //{
-                            //    g.DrawImage(Botvatten, x, y, blockstorlek, blockstorlek);
-                            //}
                         }
                     }
                 }
@@ -349,8 +318,8 @@ namespace Attempt1V2
             {
                 g.FillRectangle(Brushes.Cyan, 0, 0, 410, 50);
             }
-            g.FillRectangle(Brushes.Black, 5, 5, 40, 40);
-            g.FillRectangle(Brushes.Black, 50, 5, 40, 40);
+            g.DrawImage(Inventorysvärd, 5, 5, 40, 40);
+            g.DrawImage(Inventoryyxa, 50, 5, 40, 40);
             g.DrawImage(Jord, 95, 5, 40, 40);
             g.DrawImage(Sten, 140, 5, 40, 40);
             g.DrawImage(Sand, 185, 5, 40, 40);
