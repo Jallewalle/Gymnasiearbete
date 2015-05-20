@@ -131,6 +131,9 @@ namespace Attempt1V2
         int xoffset = -25;
         int yoffset = -50;
 
+        bool slå = false;
+        int svärdposition;
+
         Image Singel = Attempt1V2.Properties.Resources.Namnlöst_1;
         Image Sand = Attempt1V2.Properties.Resources.Sandv2;
         Image Toppvatten = Attempt1V2.Properties.Resources.toppvatten;
@@ -141,6 +144,8 @@ namespace Attempt1V2
 
         Image Inventorysvärd = Attempt1V2.Properties.Resources.sw0rd13;
         Image Inventoryyxa = Attempt1V2.Properties.Resources.pick4xe3;
+
+        Image slåsvärd = Attempt1V2.Properties.Resources.sw0rd1;
 
         Image Bakrundsbild = Attempt1V2.Properties.Resources.bakrund;
         Image Bakrundsbildv2 = Attempt1V2.Properties.Resources.bakgrund_v32;
@@ -198,7 +203,7 @@ namespace Attempt1V2
                 {
                     for (int u = BlockMove; u < 52 + BlockMove; u++)
                     {
-                        
+
 
                         x = xoffset + u * 20 - PixelMove - BlockMove * 20;
                         y = yoffset + i * 20 - jumpheight - jumpblock * 20;
@@ -317,6 +322,11 @@ namespace Attempt1V2
             else
             {
                 g.FillRectangle(Brushes.Cyan, 0, 0, 410, 50);
+            }
+
+            if (svärdposition != 0)
+            {
+                g.DrawImage(slåsvärd, svärdposition + playerX * 20 + xoffset + 5, 280, 45, 15);
             }
             g.DrawImage(Inventorysvärd, 5, 5, 40, 40);
             g.DrawImage(Inventoryyxa, 50, 5, 40, 40);
@@ -941,6 +951,28 @@ namespace Attempt1V2
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            #region avnändning av tools
+            if (slå)
+            {
+                svärdposition += 3;
+                if (svärdposition >= 30)
+                {
+                    slå = false;
+                }
+            }
+            else
+            {
+                if (svärdposition > 0)
+                {
+                    svärdposition -= 2; 
+                }
+                if (svärdposition < 0)
+                {
+                    svärdposition = 0;
+                }
+            }
+
+            #endregion
             #region move i xled
             if (move)
             {
@@ -1122,45 +1154,49 @@ namespace Attempt1V2
             int mouseYadd = (mouseY - yoffset + jumpheight) / 20 + jumpblock;
             try
             {
-                //if (e.Button == MouseButtons.Left)
-                //{
-                    if (
-                        (
-                        (mouseXadd - (playerX + BlockMove) <= +5) &&
-                        (mouseXadd - (playerX + BlockMove) >= -5) &&
-                        (mouseYadd - (playerY + jumpblock) <= +5) &&
-                        (mouseYadd - (playerY + jumpblock) >= -5)
-                        ) &&
-                        (
-                        Block[mouseYadd][mouseXadd][0] == -1 ||
-                        Block[mouseYadd][mouseXadd][0] == +4 ||
-                        Block[mouseYadd][mouseXadd][0] == +5
-                        ) &&
-                        (
-                        (itemchoice == 3 && item[0] >= 1) ||
-                        (itemchoice == 4 && item[1] >= 1) ||
-                        (itemchoice == 5 && item[2] >= 1)
-                        )
-                        )
+
+                if (
+                    (
+                    (mouseXadd - (playerX + BlockMove) <= +5) &&
+                    (mouseXadd - (playerX + BlockMove) >= -5) &&
+                    (mouseYadd - (playerY + jumpblock) <= +5) &&
+                    (mouseYadd - (playerY + jumpblock) >= -5)
+                    ) &&
+                    (
+                    Block[mouseYadd][mouseXadd][0] == -1 ||
+                    Block[mouseYadd][mouseXadd][0] == +4 ||
+                    Block[mouseYadd][mouseXadd][0] == +5
+                    ) &&
+                    (
+                    (itemchoice == 3 && item[0] >= 1) ||
+                    (itemchoice == 4 && item[1] >= 1) ||
+                    (itemchoice == 5 && item[2] >= 1)
+                    )
+                    )
+                {
+                    Block[mouseYadd][mouseXadd].RemoveAt(0);
+                    if (itemchoice == 3)
                     {
-                        Block[mouseYadd][mouseXadd].RemoveAt(0);
-                        if (itemchoice == 3)
-                        {
-                            Block[mouseYadd][mouseXadd].Add(2);
-                            item[0]--;
-                        }
-                        if (itemchoice == 4)
-                        {
-                            Block[mouseYadd][mouseXadd].Add(3);
-                            item[1]--;
-                        }
-                        if (itemchoice == 5)
-                        {
-                            Block[mouseYadd][mouseXadd].Add(1);
-                            item[2]--;
-                        }
+                        Block[mouseYadd][mouseXadd].Add(2);
+                        item[0]--;
                     }
-                //}
+                    if (itemchoice == 4)
+                    {
+                        Block[mouseYadd][mouseXadd].Add(3);
+                        item[1]--;
+                    }
+                    if (itemchoice == 5)
+                    {
+                        Block[mouseYadd][mouseXadd].Add(1);
+                        item[2]--;
+                    }
+                }
+
+                if (itemchoice == 1)
+                {
+                    slå = true;
+                }
+
             }
             catch (Exception)
             {
@@ -1225,15 +1261,15 @@ namespace Attempt1V2
                     Block[mouseYremove][mouseXremove].Add(-1);
 
 
-                        //lvl / 1.375 * 1000
-                        if (xp >= 1 && lvl != 99)
-                        {
-                            lvl++;
-                            BreakGrass -= 1;
-                            BreakStone -= 2;
-                            xp = 0;
-                            //MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
-                        }
+                    //lvl / 1.375 * 1000
+                    if (xp >= 1 && lvl != 99)
+                    {
+                        lvl++;
+                        BreakGrass -= 1;
+                        BreakStone -= 2;
+                        xp = 0;
+                        //MessageBox.Show("lvl up!" + " Now lvl: " + lvl);
+                    }
                 }
             }
             catch (Exception)

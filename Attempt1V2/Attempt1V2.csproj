@@ -158,6 +158,7 @@
     <None Include="Resources\gubv2.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sw0rd1.png" />
     <None Include="Resources\pick4xe3.png" />
     <None Include="Resources\sw0rd13.png" />
     <None Include="Resources\fallskärm.png" />
