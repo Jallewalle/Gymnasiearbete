@@ -479,7 +479,16 @@ namespace Attempt1V2
                                 }
                             }
                             if (y > 8)
+                            {
                                 y--;
+                            }
+                            else
+                            {
+                                cinematic = 2;
+                                z = 0;
+                                break;
+                            }
+                                
                         }
                         if (z != 0)
                             x++;
@@ -737,7 +746,15 @@ namespace Attempt1V2
                             }
                         }
                         if (z != 0 && y > 8)
+                        {
                             y--;
+                        }
+                        else
+                        {
+                            cinematic = 2;
+                            z = 0;
+                            break;
+                        }
                     }
                     Block[y][x].RemoveAt(0);
                     Block[y][x].Add(typ);
