@@ -11,7 +11,6 @@ using System.Threading;
 
 namespace Attempt1V2
 {
-    //inventory
     //AI
     //mineraler  (iron, silver, gold, )
     //träd
@@ -981,7 +980,7 @@ namespace Attempt1V2
             {
                 if (svärdposition > 0)
                 {
-                    svärdposition -= 2; 
+                    svärdposition -= 2;
                 }
                 if (svärdposition < 0)
                 {
